@@ -10,13 +10,6 @@ app.use(cors({
     methods: ["GET", "POST"]
 }));
 
-// const URL = "https://bhagavadgitaapi.in/"
-
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 const options = {
   method: 'GET',
@@ -34,7 +27,6 @@ app.get("/chapters", async (req, res) => {
     // console.log(result);
     res.send(result);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
@@ -45,14 +37,13 @@ const slokcount = [47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 2
 const ch = Math.floor(Math.random() * 17) + 1
 const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1 
 
-app.get("/slok/", async (req, res) => {
+app.get("/slok", async (req, res) => {
   try {
     const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/verses/${sl}/`, options);
     const result = response.data;
     // console.log(result);
     res.send(result);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
@@ -63,10 +54,9 @@ app.get("/chapter/:ch", async (req, res) => {
   try {
     const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/`, options);
     const result = response.data;
-    // console.log(result);
+    console.log(result);
     res.send(result);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
@@ -80,7 +70,6 @@ app.get("/chapter/:ch/slok", async (req, res) => {
     // console.log(result);
     res.send(result);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
@@ -94,24 +83,10 @@ app.get("/chapter/:ch/slok/:sl", async (req, res) => {
     // console.log(result);
     res.send(result);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
 
-
-
-//    const chapters = res.data;
-//     res.json(chapters);
-//     res.send(chapters);
-//     console.log(chapters);
-
-// axios.get("https://bhagavadgitaapi.in/chapters").then((result)=>{
-//     console.log(result)
-// })
-// .catch((err)=>{
-//     console.log(err)
-// })
 
 app.get('/', (req, res)=>{
     res.send("hello world")

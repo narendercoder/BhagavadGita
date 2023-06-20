@@ -148,4 +148,9 @@ const Wrapper = styled.section`
       background-position: 75% 50%;
     }
   }
+  @media (max-width: 768px){
+    .hero-section-bg {
+      height: 100vh;
+  }
+}
 `;

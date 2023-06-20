@@ -24,8 +24,8 @@ const Contact = () => {
                         type="text"
                         name="Name"
                         placeholder="Name*"
-                        value={""}
-                        onChange={"a"}
+                        // value={""}
+                        // onChange={"a"}
                       ></input>
                     </div>
                     <div className="group-val">
@@ -33,8 +33,8 @@ const Contact = () => {
                         type="text"
                         name="email"
                         placeholder="Email*"
-                        value={""}
-                        onChange={""}
+                        // value={""}
+                        // onChange={""}
                       ></input>
                     </div>
                   </div>
@@ -42,8 +42,8 @@ const Contact = () => {
                     <textarea
                       name="message"
                       placeholder="Your Message*"
-                      value={""}
-                      onChange={""}
+                      // value={""}
+                      // onChange={""}
                     ></textarea>
                   </div>
                 </form>
@@ -61,6 +61,11 @@ export default Contact;
 const Wrapper = styled.section`
   width: 100vw;
   height: 100%;
+  .contact .title{
+    h1{
+      font-size: 2.5em;
+    }
+  }
   .contact-form {
     .group-val {
       padding: 15px;

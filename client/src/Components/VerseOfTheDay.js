@@ -11,17 +11,17 @@ const VerseOfTheDay = ({id, desc, chapter, verse}) => {
      <div className='bg-container'>
       <div className="bg-wrapper"></div>
      </div>
-      <div className="flex flex-col p-10 md:justify-center">
+      <div className="flex flex-col p-10 md:justify-center w-full md:w-11/12">
         <div className="title flex items-center mb-3">
          <div className="heading mr-4 flex justify-center">
-          <h5 className="mb-0 text-orange-500">{`Verse of the day - BG ${chapter}.${verse}`}</h5>
+          <h5 className="mb-0 font-semibold text-orange-500">{`Verse of the day - BG ${chapter}.${verse}`}</h5>
          </div>
-         <span className="divider mb-0 w-5/12 md:w-8/12 h-0.5 bg-gray-300"></span>
+         <span className="divider mb-0 w-5/12 md:w-6/12 lg:w-7/12 h-0.5"></span>
         </div>
         <div className="description">
           <p className="text-gray-500 truncate whitespace-normal">{desc}</p>
         </div>
-        <div className="button font-semibold text-sm cursor-pointer">
+        <div className="button font-semibold text-sm cursor-pointer mt-2">
           <Link to={`/chapter/${chapter}/slok/${verse}`}>
           SEE MORE
           </Link>
@@ -44,15 +44,18 @@ const Wrapper = styled.section`
     padding: 0 50px;
     max-width: 1152px;
     min-height: 234px;
+    .divider{
+      background: radial-gradient(at center top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 80%);;
+    }
     .container-box {
       width: 100%;
-      background-color: white;
+      background-color: ${({ theme }) => theme.colors.bg.primary};
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       overflow: hidden;
        .bg-container{
         overflow: hidden;
-        background: url("./images/bg.png");
+        background: url("/images/bg.png");
         background-position: 65% 0%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -65,19 +68,25 @@ const Wrapper = styled.section`
        }
       .description {
         max-width: 95%;
+        p{
+          color: ${({ theme }) => theme.colors.heading.secondary};
+        }
+      }
+      .button{
+        color: ${({ theme }) => theme.colors.heading.primary};
       }
     }
   }
-  @media screen and (min-width: 750px) {
+  @media (min-width: 767px) {
     .container-box {
       max-height: 234px;
     }
     .bg-container{
-      width: 300px;
+      min-width: 250px;
       height: 300px;
     }
   }
-  @media screen and (max-width: 750px) {
+  @media  (max-width: 767px) {
     .container-box {
       min-height: 234px;
     }
@@ -86,4 +95,5 @@ const Wrapper = styled.section`
       height: 200px;
     }
   }
+
 `

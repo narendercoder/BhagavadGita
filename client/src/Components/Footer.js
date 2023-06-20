@@ -102,8 +102,9 @@ const Wrapper = styled.footer`
   position: relative;
   width: 100vw;
   height: 100%;
-  background-color: #1D0427;
-  color: white;
+  /* background-color: #1D0427; */
+  background-color: rgb(30, 30, 37);
+
   .footer-container {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -115,18 +116,27 @@ const Wrapper = styled.footer`
       }
       
     }
+
+    .footer-link{
+      h1{
+        color: white;
+      }
+    }
+
     ul {
       li {
         cursor: pointer;
         margin: 0 0 13px;
         color: #BCB4BF;
         span{
+          
           margin-bottom: 0;
         }
         .link-icon{
           font-size: 1.2rem;
           font-weight: 700;
-          margin-right: 0.1rem;
+          margin-right: 0.2rem;
+          color: orange;
         }
         &:hover{
           color: orange;
@@ -140,8 +150,8 @@ const Wrapper = styled.footer`
     }
 
     .footer-bottom {
+      color: white;
       .footer-bottom-line{
-
         border-top: 1px solid #BCB4BF;
       }
       a{

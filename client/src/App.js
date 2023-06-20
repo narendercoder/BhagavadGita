@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Shlok from "./Components/Shlok";
 import HomePage from "./Pages/HomePage";
 import About from "./Pages/About";
 import { GlobalStyle } from "./GlobalStyle/GlobalStyle";
@@ -10,25 +8,56 @@ import VersePage from "./Pages/VersePage";
 import ChapterPage from "./Pages/ChapterPage";
 import Chapters from "./Components/Chapters";
 import ErrorPage from "./Components/ErrorPage";
-import LoadingPage from "./Components/LoadingPage";
 import { useGlobalContext } from "./Context/Context";
-import Header from "./Components/Header";
 import Music from "./Components/Music";
 import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Footer from "./Components/Footer";
+import Preloader from "./Components/Preloader";
 
 function App() {
   const { isLoading } = useGlobalContext();
+  const { isdarkMode } = useGlobalContext();
 
   const lightTheme = {
     colors: {
-      
+      heading: {
+        primary: "rgb(0, 0, 0)",
+      },
+      bg: {
+        primary: "rgb(255, 255, 255)",
+      },
+      highlight: {
+        primary: "rgb(255, 152, 0)",
+        "secondary": "#1a0dab"
+      },
+      "border":{
+        "primary": "radial-gradient(at center , rgb(221, 221, 221) 0%, rgba(255, 255, 255, 0) 70%)"
+      },
+      "gradient":{
+        "primary": "linear-gradient(to right bottom, rgb(242, 242, 242) 0%, rgb(242, 242, 242) 100%);"
+      }
     },
   };
 
   const darkTheme = {
     colors: {
-      
+      heading: {
+        primary: "rgb(255, 255, 255)",
+        "secondary": "rgb(160, 160, 160)",
+      },
+      bg: {
+        primary: "rgb(49, 49, 58)",
+      },
+      highlight: {
+        "primary": "rgb(255, 152, 0)",
+        "secondary": "orange"
+      },
+      "border": {
+        "primary": "radial-gradient(at center top, rgba(197, 202, 213, 0.15) 0%, rgba(255, 255, 255, 0) 70%);"
+      },
+      gradient:{
+        "primary": "linear-gradient(to right bottom, rgba(23, 23, 27) 0%, rgba(40, 40, 47) 100%);"
+      }
     },
   };
 
@@ -40,11 +69,11 @@ function App() {
   // }, []);
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={isdarkMode ? darkTheme : lightTheme}>
       <GlobalStyle />
       <div className="app">
         {isLoading ? (
-          <LoadingPage />
+          <Preloader />
         ) : (
           <>
             <Music />
@@ -54,7 +83,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/chapters" element={<Chapters />} />
-              <Route path="/chapter/:id/" element={<ChapterPage />}/>
+              <Route path="/chapter/:id/" element={<ChapterPage />} />
               <Route path="/chapter/:id/slok/:sh" element={<VersePage />} />
               <Route path="*" element={<ErrorPage />}></Route>
             </Routes>

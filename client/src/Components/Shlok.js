@@ -36,7 +36,10 @@ const Wrapper = styled.div`
   .shlok {
     padding-bottom: 0.5em;
     .title {
-      background-color: #ffc071;
+      /* background-color: #ffc071; */
+      background-color: orange;
+      /* color: ${({ theme }) => theme.colors.heading.primary}; */
+      /* color: ${({ theme }) => theme.colors.highlight.primary}; */
       margin-bottom: 10px;
       padding: 12px 0;
       .open {
@@ -58,8 +61,10 @@ const Wrapper = styled.div`
     .description {
       
       p {
-        margin-bottom: 20px;
+        color: ${({ theme }) => theme.colors.heading.secondary};
+        margin: 20px 0;
         padding: 0 1em;
+        font-size: 1.1em;
       }
     }
   }

@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { RiMoonLine, RiSunLine } from "react-icons/ri";
 import styled from "styled-components";
+import { useGlobalContext } from '../Context/Context';
 
 const Toggler = () => {
-const [toggle, setToggle] = useState(false);
+const {isdarkMode, toggleTheme} = useGlobalContext();
+    
+let [toggle, setToggle] = useState(isdarkMode);
+
+const toggleMode = () => {
+  toggleTheme();
+  setToggle(!isdarkMode);
+};
   return (
     <Wrapper>
       {toggle === false ? (
-        <RiMoonLine className="icon" />
+        <RiMoonLine className="icon" onClick={() => toggleMode()} />
       ) : (
-        <RiSunLine className="icon" />
+        <RiSunLine className="icon" onClick={() => toggleMode()} />
       )}
     </Wrapper>
   )
@@ -22,6 +30,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 8px;
   cursor: pointer;
+  svg{
+    display: inline;
+  }
 `;

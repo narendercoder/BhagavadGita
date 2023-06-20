@@ -1,70 +1,37 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "./Reducer";
 import axios from "axios";
 
 const AppContext = React.createContext();
 
+const API = "http://localhost:4000/chapter";
+
+
+
 const initialState = {
     isLoading: false,
+    isChapterLoading: false,
+    isSingleLoading: false,
+    isVersesLoading: false,
+    isError: false,
+    isVerseLoading: false,
+    isSlokLoading: false,
     chapter: [],
     image: "",
     description: "",
     slok: {},
     singleChapter: {},
-    isSingleLoading: false,
-    isError: false,
-    isVersesLoading: false,
-    isVerseLoading: false,
     chapterVerses: [],
     verse: {},
+    isdarkMode: JSON.parse(localStorage.getItem("TOGGLE_DARKTHEME")) || false,
   }
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const UpdateHomePage = () =>{
-  //   return dispatch({
-  //      type: "HOME_UPDATE",
-  //      payload: {
-  //       description: "",
-  //       image: ""
-  //      }
-  //   })
-  // }
-
-  //to call the api
-
-  // const options = {
-  //   headers: {
-  //     'X-RapidAPI-Key': '43dad927f4msh75983f0bf4a29d5p1ac4d8jsna190ce106853',
-  //     'X-RapidAPI-Host': 'bhagavad-gita3.p.rapidapi.com'
-  //   }
-  // };
-
-  // const options = {
-  //   method: 'GET',
-  //   withCredentials: false,
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*',
-  //     'Content-Type': 'application/json',
-  //   },
-    
-  // };
-  
- 
-  // const fetchAPI = async () => {
-  //   try {
-  //       const res = await axios.request("https://bhagavad-gita3.p.rapidapi.com/v2/chapters/",options);
-  //       // const res = await axios.get("https://bhagavadgitaapi.in/chapters",options)
-  //       const data = res.data;
-  //       dispatch({type: "GET_CHAPTER", payload: data})
-  //   } catch (error) {
-  //       console.error(error);
-  //   }
-  // }
-
+  //get all particular chapter
   const fetchChapters = async () => {
-    dispatch({type: "SET_LOADING"})
+    dispatch({type: "SET_CHAPTERS_LOADING"})
     try {
       const response = await axios.get('http://localhost:4000/chapters');
       const data = response.data;
@@ -74,6 +41,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  //get random slok
   const fetchRandomSlok = async () => {
     dispatch({type: "SET_LOADING"})
     try {
@@ -86,10 +54,11 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  //get  particular chapter
   const GetSingleChapter = async (url) => {
     dispatch({type: "SET_SINGLE_LOADING"})
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(`${API}/${url}`);
       const data = response.data;
       dispatch({type: "GET_SINGLE_CHAPTER", payload: data})
     } catch (error) {
@@ -97,10 +66,11 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  //get all shlok from particular chapter
   const GetAllVerses = async (url) => {
     dispatch({type: "SET_VERSES_LOADING"})
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(`${API}/${url}`);
       const data = response.data;
       dispatch({type: "GET_ALL_VERSES", payload: data})
     } catch (error) {
@@ -108,17 +78,22 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  //get particular shlok from particular chapter
   const GetVerse = async (url) => {
     dispatch({type: "SET_VERSE_LOADING"})
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(`${API}/${url}`);
       const data = response.data;
-      // console.log(data)
+      console.log(data)
       dispatch({type: "GET_VERSE", payload: data})
     } catch (error) {
       dispatch({type: "SET_SINGLE_ERROR"})
     }
   };
+
+  const toggleTheme= () =>{
+    return dispatch({type: "TOGGLE_THEME"})
+}
   
  
   useEffect(()=>{
@@ -129,20 +104,21 @@ const AppProvider = ({ children }) => {
     fetchRandomSlok();
   }, [])
 
-  useEffect(()=>{
-    GetSingleChapter();
-  }, [])
+  // useEffect(()=>{
+  //   GetSingleChapter();
+  // }, [])
 
-  useEffect(()=>{
-    GetAllVerses();
-  }, [])
+  // useEffect(()=>{
+  //   GetAllVerses();
+  // }, [])
 
-  useEffect(()=>{
-    GetVerse();
-  }, [])
+  // useEffect(()=>{
+  //   GetVerse();
+  // }, [])
 
 
-  return <AppContext.Provider value={{...state, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse}} >
+
+  return <AppContext.Provider value={{...state, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
   {children}
   </AppContext.Provider>;
 };

@@ -11,11 +11,16 @@ const reducer = (state, action) => {
         isLoading: false,
         isError: true,
       };
+    case "SET_CHAPTERS_LOADING":
+      return {
+        ...state,
+        isChapterLoading: true,
+      };
     case "GET_CHAPTER":
       return {
         ...state,
         chapter: action.payload,
-        isLoading: false,
+        isChapterLoading: false,
       };
     case "GET_RANDOM_SLOK":
       return {
@@ -31,8 +36,8 @@ const reducer = (state, action) => {
     case "GET_SINGLE_CHAPTER":
       return {
         ...state,
+        isSingleLoading: false,
         singleChapter: action.payload,
-        issingleLoading: false,
       };
     case "SET_SINGLE_ERROR":
       return {
@@ -52,61 +57,32 @@ const reducer = (state, action) => {
         isVersesLoading: false,
       };
 
-      case "SET_VERSE_LOADING":
-        return {
-          ...state,
-          isVerseLoading: true,
-        };
-      case "GET_VERSE":
-        return {
-          ...state,
-          verse: action.payload,
-          isVerseLoading: false,
-        };
+    case "SET_VERSE_LOADING":
+      return {
+        ...state,
+        isVerseLoading: true,
+      };
+    case "GET_VERSE":
+      return {
+        ...state,
+        verse: action.payload,
+        isVerseLoading: false,
+      };
+    case "TOGGLE_THEME": {
+      state.isdarkMode = !state.isdarkMode;
+      const mode = localStorage.setItem(
+        "TOGGLE_DARKTHEME",
+        JSON.stringify(state.isdarkMode)
+      );
+      return {
+        ...state,
+        ...mode,
+      };
+    }
 
     default:
       return state;
   }
-  // if(action.type === "HOME_UPDATE"){
-  //     return{
-  //         ...state,
-  //         description: action.payload.description,
-  //         image: action.payload.image
-  //     }
-  // }
-  // if(action.type === "SET_LOADING"){
-  //     return{
-  //         ...state,
-  //         isLoading: true,
-  //     }
-  // }
-  // if(action.type === "SET_LOADING"){
-  //     return{
-  //         ...state,
-  //         isLoading: false,
-  //         isError: true,
-  //     }
-  // }
-
-  // if(action.type === "GET_CHAPTER"){
-  //     return{
-  //         ...state,
-  //         chapter: action.payload,
-  //     }
-  // }
-  // if(action.type === "GET_RANDOM_SLOK"){
-  //     return{
-  //         ...state,
-  //         slok: action.payload,
-  //     }
-  // }
-  // if(action.type === "GET_SINGLE_CHAPTER"){
-  //     return{
-  //         ...state,
-  //         singleChapter: action.payload,
-  //     }
-  // }
-  // return state;
 };
 
 export default reducer;

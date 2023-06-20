@@ -1,26 +1,26 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle`
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    ${'' /* font-family: 'Inter', sans-serif; */}
+    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
   }
-  ${'' /* ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     background-color: initial;
     width: 5px;
-} */}
-${'' /* ::-webkit-scrollbar-thumb {
-  background-color: rgba(${({ theme }) => theme.colors.rgb.primary}, .2);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .2);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px ${({ theme }) => theme.colors.border};
-} */}
+  box-shadow: inset 0 0 6px  rgba(255, 255, 255);
+}
   h1,
   h2,
   h3,
@@ -31,13 +31,10 @@ ${'' /* ::-webkit-scrollbar-thumb {
     margin-bottom: 0.5rem;
     font-weight: 700;
     line-height: 1.2;
-    
-    ${'' /* color: ${({ theme }) => theme.colors.heading}; */}
   }
   
   a {
     font-size: 0.8rem;
-    ${'' /* color: ${({ theme }) => theme.colors.black}; */}
   }
   
   p {
@@ -52,6 +49,7 @@ ${'' /* ::-webkit-scrollbar-thumb {
     font-size: 1rem;
     margin-top: 0;
     margin-bottom: 1rem;
+    
   }
   
   h1 {
@@ -86,8 +84,8 @@ ${'' /* ::-webkit-scrollbar-thumb {
   .app{
     width: 100vw;
     height: auto;
-    overflow: hidden;
-    background-color: #f7f7fc;
+    overflow-x: hidden;
+    background: ${({ theme }) => theme.colors.gradient.primary};
   }
 
   @media screen and (max-width: 700px) {
@@ -97,4 +95,4 @@ ${'' /* ::-webkit-scrollbar-thumb {
   }
  
 
-`
+`;

@@ -40,7 +40,7 @@ const ChapterBox = ({ id, heading, meaning, desc }) => {
               )}
             </p>
           </div>
-          <div className="button font-semibold text-sm">SEE MORE</div>
+          <div className="button font-semibold text-sm mt-4">SEE MORE</div>
         </div>
       </div>
     </Wrapper>
@@ -53,18 +53,32 @@ const Wrapper = styled.div`
   .chapter-box {
     width: 100%;
     height: 100%;
-    background-color: white;
+    /* background-color: white; */
+    background: ${({ theme }) => theme.colors.bg.primary};
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     transition: all linear 0.2s;
+    border: none;
     cursor: pointer;
     &:hover {
       border: 1px solid rgba(249, 115, 22, 0.5);
-      background-color: #fffaec;
+      /* background-color: #fffaec; */
+      /* background-color: ${({ theme }) => theme.colors.heading.primary}; */
       transform: scale(1.01)
     }
     .heading{
       color: #f97316;
+    }
+    .description{
+      span{
+        color: ${({ theme }) => theme.colors.heading.primary};
+      }
+      p{
+        color: ${({ theme }) => theme.colors.heading.secondary};
+      }
+    }
+    .button{
+      color: ${({ theme }) => theme.colors.heading.primary};
     }
   }
 `;
