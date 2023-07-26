@@ -55,7 +55,7 @@ const Footer = () => {
 
           <div className="footer-link p-5 flex flex-col">
             <div className="mb-2">
-              <h1 className="text-xl font-bold">FOLLOW US</h1>
+              <h1 className="text-xl font-bold">FOLLOW ME</h1>
             </div>
             <ul>
               <li>

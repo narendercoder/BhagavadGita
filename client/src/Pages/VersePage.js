@@ -12,7 +12,7 @@ const VersePage = () => {
   const [showVerse, setShowVerse] = useState({});
   const { id, sh } = useParams();
 
-  console.log(showVerse)
+  // console.log(showVerse)
   const {
     GetVerse,
     verse,
@@ -30,6 +30,22 @@ const VersePage = () => {
     }
   };
 
+  const EnglishTranslation = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].language === "english") {
+        return arr[i].description;
+      }
+    }
+  };
+
+  const HindiTranslation = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].language === "hindi") {
+        return arr[i].description;
+      }
+    }
+  };
+
   useEffect(() => {
     setShowVerse(verse);
   }, [verse]);
@@ -42,7 +58,6 @@ const VersePage = () => {
 
   return (
     <>
-      <Header header={true} />
       <Wrapper>
         <div className="wrapper px-0 xl:px-20 py-3">
         <div className="chapter-container px-8 md:px-10 xl:px-20 ">
@@ -131,7 +146,8 @@ const VersePage = () => {
                               </div>
 
                               <div className="description w-full">
-                                <p>{showVerse.commentaries[13].description}</p>
+                                
+                                {/* <p>{showVerse.commentaries[13].description}</p> */}
                               </div>
                             </div>
                           </div>

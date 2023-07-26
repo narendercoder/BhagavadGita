@@ -2,12 +2,12 @@ import React from "react";
 import Navbar from "./Navbar";
 import styled from "styled-components";
 
-const Header = ({header}) => {
-
+const Header = ({header, location}) => {
+  
   return (
     <Wrapper>
-      <div className={header ? "header active w-full" : "header w-full"}>
-        <Navbar header={header} />
+      <div className={!header && location.pathname === "/" ? "header w-full" : "header active w-full"}>
+        <Navbar header={header} location={location} />
       </div>
     </Wrapper>
   );
@@ -16,7 +16,7 @@ const Header = ({header}) => {
 export default Header;
 
 const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 99;

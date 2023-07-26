@@ -55,7 +55,7 @@ export const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 3rem;
     font-weight: 700;
-    line-height: 2.5rem;
+    line-height: 6rem;
   }
   
   h2 {
@@ -90,7 +90,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @media screen and (max-width: 700px) {
      html{
-      font-size: 80%;
+      font-size: 60%;
      }
   }
  

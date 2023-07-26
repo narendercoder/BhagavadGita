@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     background: ${({ theme }) => theme.colors.bg.primary};
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    transition: all linear 0.2s;
+    transition: transform linear 0.2s;
     border: none;
     cursor: pointer;
     &:hover {

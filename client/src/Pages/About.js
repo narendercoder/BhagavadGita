@@ -3,14 +3,27 @@ import styled from "styled-components";
 
 const About = () => {
   return (
-    <Wrapper className="relative about-section" id="about">
-      <div className="custom-container">
-        <div className="wrapper grid grid-cols-2 gap-4">
+    <Wrapper
+      className="relative about-section overflow-hidden flex justify-center py-10"
+      id="about"
+    >
+      <div className="custom-container flex flex-col">
+        {/* border */}
+        <div className="relative w-full mb-10">
+          <img src="./images/border1.png" alt="border" />
+        </div>
 
-          <div className="w-full h-full">
-            <div className="content overflow-hidden w-full h-full">
-              <img src="/images/bg6.jpg" alt="" />
+        <div className="wrapper mt-10 grid grid-rows-1 xl:grid-cols-2 xl:gap-4">
+
+          <div className="img-content w-full h-full">
+            <div className="content overflow-hidden ">
             </div>
+          </div>
+
+          <div>
+
+          <div className="title">
+            <h3 className=" text-gray-400">About US</h3>
           </div>
 
           <div className="description">
@@ -35,6 +48,9 @@ const About = () => {
               revelation of the Ultimate Purpose of Life.
             </p>
           </div>
+
+          </div>
+
         </div>
       </div>
     </Wrapper>
@@ -45,14 +61,74 @@ export default About;
 
 const Wrapper = styled.section`
   width: 100vw;
-  height: 100vh;
-  .custom-container{
-    margin: 0 10rem;
-    img{
+  height: 100%;
+  .custom-container {
+    margin: 0 8rem;
+    p {
+      color: ${({ theme }) => theme.colors.heading.primary};
+      line-height: 1.8em;
+    }
+    .img-content{
+      position: relative;
+    }
+    .title{
+      position: relative;
+      margin-bottom: 5px;
+      z-index: 1;
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: #6f7794;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      background: url("/images/bg7.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 0%;
+      /* width: 500px; */
+      &:before{
+        content: "";
+        position: absolute;
+        background-color: black;
+        opacity: 0.2;
+      }
+    }
+
+    .description {
+      position: relative;
+      /* p{
+        color: #5b627d;
+      } */
+    }
+  }
+  @media (min-width: 1280px) {
+    .content {
+        width: 500px;
+        height: 100%;
+      &:before{
+        width: 600px;
+        height: 100%;
+      }
+    }
+  }
+  @media (max-width: 1280px) {
+    .content{
+      width: 100%;
+      height: 400px;
+    &::before{
+      width: 100%;
       height: 100%;
     }
-    p{
-      line-height: 1.5em;
+    }
+    .custom-container {
+      margin: 0 5rem;
+      .content {
+        margin-bottom: 2rem;
+      }
     }
   }
 `;

@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "./Reducer";
 import axios from "axios";
 
 const AppContext = React.createContext();
 
 const API = "http://localhost:4000/chapter";
-
-
 
 const initialState = {
     isLoading: false,
@@ -28,6 +26,8 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [header, setHeader] = useState(false);
+
 
   //get all particular chapter
   const fetchChapters = async () => {
@@ -118,7 +118,7 @@ const AppProvider = ({ children }) => {
 
 
 
-  return <AppContext.Provider value={{...state, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
+  return <AppContext.Provider value={{...state,header, setHeader, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
   {children}
   </AppContext.Provider>;
 };

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import About from "./Pages/About";
 import { GlobalStyle } from "./GlobalStyle/GlobalStyle";
@@ -13,11 +13,25 @@ import Music from "./Components/Music";
 import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Footer from "./Components/Footer";
 import Preloader from "./Components/Preloader";
+import Header from "./Components/Header";
 
-function App() {
+
+function App({history}) {
   const { isLoading } = useGlobalContext();
   const { isdarkMode } = useGlobalContext();
+  const { header, setHeader} = useGlobalContext();
+  const location = useLocation();
 
+  const changeHeaderBackground = () =>{
+    if(window.scrollY >= 10){
+      setHeader(true);
+    }
+    else{
+      setHeader(false);
+    }
+  }
+    window.addEventListener('scroll', changeHeaderBackground);
+  
   const lightTheme = {
     colors: {
       heading: {
@@ -32,6 +46,9 @@ function App() {
       },
       "border":{
         "primary": "radial-gradient(at center , rgb(221, 221, 221) 0%, rgba(255, 255, 255, 0) 70%)"
+      },
+      "border_color":{
+        "primary": "#f6e0ce"
       },
       "gradient":{
         "primary": "linear-gradient(to right bottom, rgb(242, 242, 242) 0%, rgb(242, 242, 242) 100%);"
@@ -55,11 +72,18 @@ function App() {
       "border": {
         "primary": "radial-gradient(at center top, rgba(197, 202, 213, 0.15) 0%, rgba(255, 255, 255, 0) 70%);"
       },
+      "border_color":{
+        "primary": "gray"
+      },
       gradient:{
         "primary": "linear-gradient(to right bottom, rgba(23, 23, 27) 0%, rgba(40, 40, 47) 100%);"
       }
     },
   };
+
+  
+
+  console.log(location.pathname)
 
   // useEffect(() => {
   //     setTimeout(() => {
@@ -71,11 +95,13 @@ function App() {
   return (
     <ThemeProvider theme={isdarkMode ? darkTheme : lightTheme}>
       <GlobalStyle />
+
       <div className="app">
         {isLoading ? (
           <Preloader />
         ) : (
           <>
+           <Header header={header} location={location} />
             <Music />
             <ScrollToTopButton />
             <Routes>

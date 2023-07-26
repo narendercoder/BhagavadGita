@@ -17,7 +17,7 @@ const HeroSection = () => {
       <>
         <Wrapper className="relative hero-section">
         <div className="custom-container">
-          <div className="flex justify-center items-center w-full">
+          <div className="flex justify-center items-center">
             <div className="relative hero-section-bg flex justify-center items-center">
               <div className="hero-section-data flex flex-col justify-center items-center">
                 <h1 className="text-white">Experience the Gita</h1>
@@ -28,7 +28,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="hero-section-image absolute w-full h-full">
+        <div className="hero-section-image absolute w-screen h-screen">
           <div className="hero-container">
             <div className="wrapper"></div>
           </div>
@@ -96,7 +96,7 @@ const Wrapper = styled.section`
       /* background-color: rgba(255, 250, 236, 0.5); */
       .hero-container {
         position: relative;
-        width: 100vw;
+        width: 110vw;
         height: 100vh;
         background: url("/images/bg5.jpg");
         transform-origin: 0% 0%;

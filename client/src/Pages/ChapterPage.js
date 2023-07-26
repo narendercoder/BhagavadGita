@@ -44,7 +44,7 @@ const ChapterPage = () => {
 
   return (
     <>
-      <Header header={true} />
+
       <Wrapper>
         <div className="chapter-container px-0 xl:px-20 py-3">
           <div className="wrapper px-8 md:px-10 xl:px-20">

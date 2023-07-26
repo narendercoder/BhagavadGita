@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-scroll";
+// import { Link } from "react-scroll";
 import styled from "styled-components";
 import { CgClose, CgMenu } from "react-icons/cg";
 import Toggler from "./Toggler";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useGlobalContext } from "../Context/Context";
 
-const Navbar = ({header}) => {
+const Navbar = ({header, location}) => {
   const [menuIcon, setMenuIcon] = useState(false);
   const { isdarkMode } = useGlobalContext();
   return (
@@ -16,7 +16,7 @@ const Navbar = ({header}) => {
         <div className="navbar-container w-full grid gap-3">
           <div className="logo">
             <NavLink to="/">
-              <img src={header && !isdarkMode ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
+              <img src={header  || location.pathname !== "/" && !isdarkMode ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
             </NavLink>
             <CgClose
               name="close-outline"
@@ -42,7 +42,7 @@ const Navbar = ({header}) => {
               </li>
               <li>
                 <Link
-                  to="about"
+                  to="/about"
                   activeClass="active"
                   smooth={true}
                   offset={-50}
@@ -55,7 +55,7 @@ const Navbar = ({header}) => {
               </li>
               <li>
                 <Link
-                  to="chapters"
+                  to="/chapters"
                   activeClass="active"
                   smooth={true}
                   offset={-50}
@@ -68,7 +68,7 @@ const Navbar = ({header}) => {
               </li>
               <li>
                 <Link
-                  to="contact"
+                  to="/contact"
                   activeClass="active"
                   smooth={true}
                   offset={-50}
@@ -98,7 +98,7 @@ const Navbar = ({header}) => {
 
           <div className="mobile-logo flex justify-center">
             <NavLink to="/">
-              <img src={header ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
+              <img src={header && !isdarkMode ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
             </NavLink>
           </div>
 
