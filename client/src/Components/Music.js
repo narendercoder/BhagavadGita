@@ -42,7 +42,7 @@ const Music = () => {
 
   return (
     <Wrapper className="rounded-full" onClick={handlePlayPause}>
-      {/* <audio ref={audioPlayer} src={currentSong.url} autoPlay onEnded={endedEvent}></audio> */}
+      <audio ref={audioPlayer} src={currentSong.url} autoPlay onEnded={endedEvent}></audio>
       <button className="btn">
         {isPlaying ? <MdMusicNote/> : <MdMusicOff/>}
       </button>
