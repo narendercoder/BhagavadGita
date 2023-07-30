@@ -14,12 +14,12 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (
       formData.name === "" ||
       formData.email === "" ||
       formData.message === ""
     ) {
-      e.preventDefault();
       return alert("Please fill all the Details.");
     }
     // console.log(formData)
