@@ -5,9 +5,11 @@ import {
   MdKeyboardDoubleArrowLeft,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import { useGlobalContext } from "../Context/Context";
 
 const ChapterBtn = () => {
  const {id} = useParams();
+ const {DefaultLanguage } = useGlobalContext();
 
   return (
     <Wrapper className="chapter-btn">
@@ -17,7 +19,13 @@ const ChapterBtn = () => {
         </Link>
       </button>
       <div className="cur">
-        <Link to={`/chapter/${id}`}>{`Chapter ${id}`}</Link>
+        <Link to={`/chapter/${id}`}>
+          {
+            DefaultLanguage === "hindi" ? 
+            <>{`अध्याय ${id}`}</>:
+            <>{`Chapter ${id}`}</>
+          }
+        </Link>
       </div>
       <button className="next-arrow">
         <Link to={`/chapter/${Number(id) + 1}`} className={id >=18 ? "disabled" : ""}>

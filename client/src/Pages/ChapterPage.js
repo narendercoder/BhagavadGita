@@ -3,14 +3,15 @@ import { useGlobalContext } from "../Context/Context";
 import { useParams } from "react-router-dom";
 import Shlok from "../Components/Shlok";
 import styled from "styled-components";
-import Header from "../Components/Header";
 import VerseTable from "../Components/VerseTable";
 import Loading from "../Components/Loading";
+import MenuList from "../Components/MenuList";
 
 const ChapterPage = () => {
   const { id } = useParams();
   const [showChapter, setShowChapter] = useState({});
   const [showChapterVerses, setShowChapterVerses] = useState([]);
+
 
   const {
     GetSingleChapter,
@@ -19,11 +20,17 @@ const ChapterPage = () => {
     chapterVerses,
     isVersesLoading,
     isSingleLoading,
+    DefaultLanguage
   } = useGlobalContext();
+
+  // console.log(DefaultLanguage)
 
   const description = (arr) => {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].author_name === "Swami Adidevananda") {
+      if (DefaultLanguage === "english" && arr[i].author_name === "Swami Adidevananda") {
+        return arr[i].description;
+      }
+      else if(DefaultLanguage === "hindi" && arr[i].author_name === "Swami Tejomayananda"){
         return arr[i].description;
       }
     }
@@ -40,11 +47,11 @@ const ChapterPage = () => {
   useEffect(() => {
     GetSingleChapter(`${id}`);
     GetAllVerses(`${id}/slok`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
     <>
-
       <Wrapper>
         <div className="chapter-container px-0 xl:px-20 py-3">
           <div className="wrapper px-8 md:px-10 xl:px-20">
@@ -57,16 +64,32 @@ const ChapterPage = () => {
                 </>
               ) : (
                 <>
+                  <MenuList/>
                   <div className="relative chapter-intro pt-20 pb-10 flex justify-center flex-col items-center">
                     <div className="chapter-heading mb-3 flex justify-center flex-col items-center">
-                      <h3 className="font-bold mb-0"><span className="text-2xl text-white">Chapter {id}{" "}:{" "}</span>{showChapter.name_transliterated}</h3>
+                      <h3 className="font-bold mb-0">
+                        {
+                          DefaultLanguage === "hindi" ?  <>
+                          <span className="text-2xl">अध्याय {id}{" "}:{" "}</span>{showChapter.name}
+                          </>
+                          :
+                          <>
+                          <span className="text-2xl">Chapter {id}{" "}:{" "}</span>{showChapter.name_transliterated}
+                          </>
+                        }
+                      </h3>
                     </div>
 
                     <div className="chapter-summary">
                       <p>
                         {Object.keys(showChapter).length !== 0
-                          ? showChapter.chapter_summary
-                          : ""}
+                          ? <>
+                            {
+                              DefaultLanguage === "hindi" ? <>{showChapter.chapter_summary_hindi}</>  : <>{showChapter.chapter_summary}</>
+                            }
+                          </>
+                          : ""
+                          }
                       </p>
                     </div>
 
@@ -84,7 +107,9 @@ const ChapterPage = () => {
                         <>
                           <div className="search-item py-5 mb-5 text-center">
                             <span className="font-bold text-xl">
-                              {showChapterVerses.length} Verses
+                              {
+                                DefaultLanguage === "hindi" ? <>{showChapterVerses.length} {`श्लोक`}</> : <>{showChapterVerses.length} Verses</>
+                              }
                             </span>
                           </div>
                           {showChapterVerses.map((item, index) => {
@@ -95,6 +120,7 @@ const ChapterPage = () => {
                                   verseNumber={item.verse_number}
                                   chapter={item.chapter_number}
                                   description={description(item.translations)}
+                                  DefaultLanguage={DefaultLanguage}
                                 />
                               </>
                             );
@@ -180,7 +206,7 @@ const Wrapper = styled.div`
 
   .main-section {
     position: relative;
-    padding: 1em;
+    padding: 30px 1em 1em 1em;
     overflow-y: scroll;
     height: 1000px;
     z-index: 1;
@@ -188,7 +214,7 @@ const Wrapper = styled.div`
  
 
   .chapter-intro {
-    padding-top: 1em;
+    padding-top: 2em;
     position: relative;
     z-index: 2;
   }

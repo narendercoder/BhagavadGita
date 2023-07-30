@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Shlok = ({ id, chapter, verseNumber, description }) => {
+const Shlok = ({ id, chapter, verseNumber, description, DefaultLanguage }) => {
+ 
   return (
     <Wrapper>
       <div className="shlok">
@@ -12,7 +13,11 @@ const Shlok = ({ id, chapter, verseNumber, description }) => {
               to={`/chapter/${chapter}/slok/${verseNumber}`}
               className="relative w-full"
             >
-              <h4 className="mb-0 text-center">{`Bhagavad Gita ${chapter}.${verseNumber}`}</h4>
+              <h4 className="mb-0 text-center">
+                {
+                  DefaultLanguage === "hindi" ? <>{`भगवद्गीता ${chapter}.${verseNumber}`}</> : <>{`Bhagavad Gita ${chapter}.${verseNumber}`}</>
+                }
+              </h4>
 
               <span className="open absolute float-right">
                 {`view `}

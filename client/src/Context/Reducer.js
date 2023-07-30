@@ -80,6 +80,14 @@ const reducer = (state, action) => {
       };
     }
 
+    case "SET_SELECT_LANGUAGE":{
+
+      return{
+        ...state,
+        DefaultLanguage: action.payload,
+      }
+    }
+
     default:
       return state;
   }

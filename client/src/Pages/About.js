@@ -23,7 +23,15 @@ const About = () => {
           <div>
 
           <div className="title">
-            <h3 className=" text-gray-400">About US</h3>
+            <h3>
+            <span className=" text-2xl text-orange-500">About</span> 
+            <span className="text-2xl text-gray-400"> US</span>
+            </h3>
+          </div>
+          <div className="heading">
+            <h2>
+            TALKING BHAGAVAD GITA
+            </h2>
           </div>
 
           <div className="description">
@@ -81,6 +89,9 @@ const Wrapper = styled.section`
       text-transform: uppercase;
       font-weight: 400;
       color: #6f7794;
+    }
+    .heading{
+      color: #555;
     }
     .content {
       position: relative;

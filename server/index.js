@@ -2,15 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const app = express();
-
-app.use(express.json());
+const contactRoutes = require("./routes/contactRoutes");
+const { CLIENT_ACCESS_URL } = require("../server/config/keys");
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: CLIENT_ACCESS_URL,
     methods: ["GET", "POST"]
 }));
 
-
+app.use(express.json());
 const options = {
   method: 'GET',
   headers: {
@@ -86,6 +86,8 @@ app.get("/chapter/:ch/slok/:sl", async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 });
+
+app.use("/contact", contactRoutes)
 
 
 app.get('/', (req, res)=>{

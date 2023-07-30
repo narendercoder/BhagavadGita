@@ -6,17 +6,31 @@ import Toggler from "./Toggler";
 import { Link, NavLink } from "react-router-dom";
 import { useGlobalContext } from "../Context/Context";
 
-const Navbar = ({header, location}) => {
+const Navbar = ({ header, location }) => {
   const [menuIcon, setMenuIcon] = useState(false);
   const { isdarkMode } = useGlobalContext();
   return (
     <Wrapper className="w-full">
       <div className={menuIcon ? "navbar active" : "navbar "}>
-      <div className="menu_mobile_overlay" onClick={() => setMenuIcon(false)} ></div>
+        <div
+          className="menu_mobile_overlay"
+          onClick={() => setMenuIcon(false)}
+        ></div>
         <div className="navbar-container w-full grid gap-3">
           <div className="logo">
             <NavLink to="/">
-              <img src={header  || location.pathname !== "/" && !isdarkMode ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
+              <img
+                src={
+                  location.pathname === "/"
+                    ?( !isdarkMode && header
+                      ? "/images/logo3.png"
+                      : "/images/logo2.png")
+                    : (!isdarkMode
+                    ? "/images/logo3.png"
+                    : "/images/logo2.png")
+                }
+                alt="logo"
+              />
             </NavLink>
             <CgClose
               name="close-outline"
@@ -30,8 +44,8 @@ const Navbar = ({header, location}) => {
               <li>
                 <Link
                   to="/"
-                  activeClass="active"
-                  smooth={true}
+                  activeclass="active"
+                  smooth={"true"}
                   offset={-50}
                   duration={500}
                   onClick={() => setMenuIcon(false)}
@@ -43,8 +57,8 @@ const Navbar = ({header, location}) => {
               <li>
                 <Link
                   to="/about"
-                  activeClass="active"
-                  smooth={true}
+                  activeclass="active"
+                  smooth={"true"}
                   offset={-50}
                   duration={500}
                   className="navbar-link "
@@ -56,8 +70,8 @@ const Navbar = ({header, location}) => {
               <li>
                 <Link
                   to="/chapters"
-                  activeClass="active"
-                  smooth={true}
+                  activeclass="active"
+                  smooth={"true"}
                   offset={-50}
                   duration={500}
                   className="navbar-link "
@@ -69,8 +83,8 @@ const Navbar = ({header, location}) => {
               <li>
                 <Link
                   to="/contact"
-                  activeClass="active"
-                  smooth={true}
+                  activeclass="active"
+                  smooth={"true"}
                   offset={-50}
                   duration={500}
                   className="navbar-link "
@@ -98,7 +112,18 @@ const Navbar = ({header, location}) => {
 
           <div className="mobile-logo flex justify-center">
             <NavLink to="/">
-              <img src={header && !isdarkMode ? "/images/logo3.png" : "/images/logo2.png"} alt="logo" />
+              <img
+                src={
+                  location.pathname === "/"
+                    ?( !isdarkMode && header
+                      ? "/images/logo3.png"
+                      : "/images/logo2.png")
+                    : (!isdarkMode
+                    ? "/images/logo3.png"
+                    : "/images/logo2.png")
+                }
+                alt="logo"
+              />
             </NavLink>
           </div>
 
@@ -129,9 +154,8 @@ const Wrapper = styled.nav`
     width: 100%;
     height: 100%;
     background-color: #250831;
-    opacity: .1;
-}
-
+    opacity: 0.1;
+  }
 
   .navbar-container {
     grid-template-columns: 0.5fr 2fr 0.5fr;
@@ -186,8 +210,8 @@ const Wrapper = styled.nav`
     }
     .logo {
       .close-outline {
-          display: none;
-        }
+        display: none;
+      }
     }
   }
 
@@ -202,7 +226,7 @@ const Wrapper = styled.nav`
         color: white;
       }
     }
-    .active .menu_mobile_overlay{
+    .active .menu_mobile_overlay {
       display: block;
       z-index: 998;
     }
@@ -273,7 +297,7 @@ const Wrapper = styled.nav`
           li {
             padding: 1.5rem 0;
             width: 100%;
-            border-bottom: 2px solid rgba(95,44,112, 0.5);
+            border-bottom: 2px solid rgba(95, 44, 112, 0.5);
             .navbar-link {
               font-size: 1.5rem;
               color: white;
@@ -284,7 +308,6 @@ const Wrapper = styled.nav`
             }
           }
         }
-
       }
       .mode-toggler {
         display: none;

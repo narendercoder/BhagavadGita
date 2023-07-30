@@ -4,9 +4,10 @@ import axios from "axios";
 
 const AppContext = React.createContext();
 
-const API = "http://localhost:4000/chapter";
+const API = `${process.env.REACT_APP_BACKEND_URL}`;
 
 const initialState = {
+    DefaultLanguage: "english",
     isLoading: false,
     isChapterLoading: false,
     isSingleLoading: false,
@@ -28,12 +29,15 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [header, setHeader] = useState(false);
 
+   const selectLanguage = (data) =>{
+    return dispatch({type: "SET_SELECT_LANGUAGE", payload: data})
+   }
 
   //get all particular chapter
   const fetchChapters = async () => {
     dispatch({type: "SET_CHAPTERS_LOADING"})
     try {
-      const response = await axios.get('http://localhost:4000/chapters');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/chapters`);
       const data = response.data;
       dispatch({type: "GET_CHAPTER", payload: data})
     } catch (error) {
@@ -46,7 +50,7 @@ const AppProvider = ({ children }) => {
     dispatch({type: "SET_LOADING"})
     try {
       dispatch({type: "SET_LOADING"})
-      const response = await axios.get('http://localhost:4000/slok/');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/slok/`);
       const data = response.data;
       dispatch({type: "GET_RANDOM_SLOK", payload: data})
     } catch (error) {
@@ -118,7 +122,7 @@ const AppProvider = ({ children }) => {
 
 
 
-  return <AppContext.Provider value={{...state,header, setHeader, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
+  return <AppContext.Provider value={{...state,header, setHeader,selectLanguage, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
   {children}
   </AppContext.Provider>;
 };

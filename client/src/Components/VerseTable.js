@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import ChapterBtn from "../Styles/ChapterBtn";
 import { useGlobalContext } from "../Context/Context";
 import { Link, useParams } from "react-router-dom";
-// import { NavLink } from "react-router-dom";
-import { imageList } from "../config/imageList";
+import Loading from "./Loading";
 
 const VerseTable = ({ singleChapter }) => {
-  const {id, sh} = useParams();
-  const { chapterVerses } = useGlobalContext();
-  
+  const { id, sh } = useParams();
+  const { chapterVerses, isVersesLoading, DefaultLanguage } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -19,20 +17,38 @@ const VerseTable = ({ singleChapter }) => {
             <img src={`/images/${id}.jpg`} alt="img" />
           </div>
           <div className="chapterTitle text-center">
-            <h4>{`${id}. ${singleChapter.name_transliterated}`}</h4>
+            <h4>{
+              DefaultLanguage === "hindi" ? <>
+              {`${id}. ${singleChapter.name}`}
+              </> : <>
+              {`${id}. ${singleChapter.name_transliterated}`}
+              </>
+            }</h4>
           </div>
           <ChapterBtn id={id} />
 
           <div className="verseTable">
-            {chapterVerses.map((item, index) => {
-              return (
-                <>
-                  <Link key={index} to={`/chapter/${id}/slok/${(index + 1)}`} className={sh == (index+1) ? "verse-count active" :"verse-count"} >
-                    <span>{index + 1}</span>
-                  </Link>
-                </>
-              );
-            })}
+            {!isVersesLoading ? (
+              chapterVerses.map((item, index) => {
+                return (
+                  <>
+                    <Link
+                      key={index}
+                      to={`/chapter/${id}/slok/${index + 1}`}
+                      className={
+                        sh === index + 1 ? "verse-count active" : "verse-count"
+                      }
+                    >
+                      <span>{index + 1}</span>
+                    </Link>
+                  </>
+                );
+              })
+            ) : (
+              <>
+                <Loading />
+              </>
+            )}
           </div>
         </div>
       </aside>
@@ -43,8 +59,8 @@ const VerseTable = ({ singleChapter }) => {
 export default VerseTable;
 
 const Wrapper = styled.div`
-   height:100%;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   .right-section {
     padding: 1em;
     height: 100%;
@@ -77,17 +93,17 @@ const Wrapper = styled.div`
       cursor: pointer;
       color: ${({ theme }) => theme.colors.heading.primary};
       &:hover {
-        span{
+        span {
           color: white;
         }
         background-color: #ffc071;
         text-decoration: none;
       }
     }
-    .verse-count.active{
-        background-color: orange;
-        text-decoration: none;
-        cursor: pointer;
+    .verse-count.active {
+      background-color: orange;
+      text-decoration: none;
+      cursor: pointer;
     }
   }
   @media screen and (max-width: 960px) {

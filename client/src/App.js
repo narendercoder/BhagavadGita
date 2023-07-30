@@ -83,7 +83,7 @@ function App({history}) {
 
   
 
-  console.log(location.pathname)
+  // console.log(location.pathname)
 
   // useEffect(() => {
   //     setTimeout(() => {
