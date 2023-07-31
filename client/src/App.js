@@ -16,7 +16,7 @@ import Preloader from "./Components/Preloader";
 import Header from "./Components/Header";
 
 
-function App({history}) {
+function App() {
   const { isLoading } = useGlobalContext();
   const { isdarkMode } = useGlobalContext();
   const { header, setHeader} = useGlobalContext();

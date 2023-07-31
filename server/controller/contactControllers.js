@@ -25,10 +25,11 @@ const contact = async (req, res) => {
     //   sending the confirmation to myself
     options = {
       name: data.name,
-      email: "narendersinghbisht382@gmail.com",
+      email: "infopartner256@gmail.com",
       subject: "New Query from Bhagavad Gita Website",
       message_Content: `<p> Hi Narender Singh Bisht, <br> You have received a new query from your Bhagavad Gita Website. The Sender Details are: <br> <b>Name : </b>${data.name} <br> <b>Email : </b> ${data.email} <br> <b>Message : </b> ${data.message} </p>`,
     };
+    
     await sendEmail(options);
     res.status(201).json({
       success: true,

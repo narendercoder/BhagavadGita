@@ -1,8 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
+import { useGlobalContext } from "../Context/Context";
 
 const Contact = () => {
+  const { isdarkMode } = useGlobalContext();
+  console.log(isdarkMode)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +25,17 @@ const Contact = () => {
       formData.email === "" ||
       formData.message === ""
     ) {
-      return alert("Please fill all the Details.");
+      return toast.error("Please fill all the Details.", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isdarkMode ? "dark" : "light",
+      });
+      
     }
     // console.log(formData)
     const data = {
@@ -32,13 +47,20 @@ const Contact = () => {
       `${process.env.REACT_APP_BACKEND_URL}/contact`,
       data
     );
-    console.log(res.data.success);
+    // console.log(res.data.success);
     if (res.data.success === true) {
-      alert(
-        "Your query has been submitted. A confirmation mail has been sent to your email."
-      );
+      toast.success("Thank You! Your Message has been sent sucessfully!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: isdarkMode ? "dark" : "light",
+      });
     }
-    console.log("clear");
+    // console.log("clear");
     setFormData({
       name: "",
       email: "",
@@ -46,7 +68,7 @@ const Contact = () => {
     });
   };
 
-  console.log(formData);
+  // console.log(formData);
   return (
     <Wrapper className="relative contact-section" id="contact">
       <div className="custom-container p-10">
@@ -239,13 +261,13 @@ const Wrapper = styled.section`
             /* background-color: ${({ theme }) => theme.colors.bg.primary}; */
             /* border: 2px solid ${({ theme }) =>
               theme.colors.border_color.primary};
-        border-radius: 31px; */
+             border-radius: 31px; */
             transition: color 0.3s ease, background-color 0.3s ease,
               border-color 0.3s ease;
             &:focus {
               outline: none;
               /* color: #694c5c;
-          border-color: orange !important; */
+              border-color: orange !important; */
               /* background-color: ${({ theme }) => theme.colors.bg.primary}; */
             }
             &:hover {

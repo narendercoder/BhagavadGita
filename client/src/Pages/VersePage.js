@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Context/Context";
 import styled from "styled-components";
 import { useState } from "react";
-import Header from "../Components/Header";
 import VerseTable from "../Components/VerseTable";
 import Loading from "../Components/Loading";
 import MenuList from "../Components/MenuList";
@@ -13,7 +12,7 @@ const VersePage = () => {
   const [showVerse, setShowVerse] = useState({});
   const { id, sh } = useParams();
 
-  // console.log(showVerse)
+  console.log(showVerse);
   const {
     GetVerse,
     verse,
@@ -24,29 +23,29 @@ const VersePage = () => {
     DefaultLanguage,
   } = useGlobalContext();
 
-  const description = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].author_name === "Swami Adidevananda") {
-        return arr[i].description;
-      }
-    }
-  };
+  // const description = (arr) => {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i].author_name === "Swami Adidevananda") {
+  //       return arr[i].description;
+  //     }
+  //   }
+  // };
 
-  const EnglishTranslation = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].language === "english") {
-        return arr[i].description;
-      }
-    }
-  };
+  // const EnglishTranslation = (arr) => {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i].language === "english") {
+  //       return arr[i].description;
+  //     }
+  //   }
+  // };
 
-  const HindiTranslation = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].language === "hindi") {
-        return arr[i].description;
-      }
-    }
-  };
+  // const HindiTranslation = (arr) => {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i].language === "hindi") {
+  //       return arr[i].description;
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     setShowVerse(verse);
@@ -149,15 +148,59 @@ const VersePage = () => {
                                 </div>
 
                                 <div className="description w-full">
-                                  <p>
-                                    <span className="verseShort">
-                                      <u className="font-bold">BG 1.1</u>
-                                      {":"}
-                                    </span>{" "}
-                                    {
-                                      DefaultLanguage === "hindi" ? <>{HindiTranslation(showVerse.translations).split("।")[4]}</> : <>{EnglishTranslation(showVerse.translations)}</>
-                                    }
-                                  </p>
+                                  <>
+                                    {showVerse.translations.map(
+                                      (item, index) => {
+                                        return (
+                                          <>
+                                            {DefaultLanguage === "hindi" &&
+                                            item.language === "hindi" ? (
+                                              <>
+                                                <div className="desc-content mt-3">
+                                                <div className="title">
+                                                  <h3 className="text-center font-bold">
+                                                  {item.author_name}
+                                                  </h3>
+                                                </div>
+
+                                                <p>
+                                                  <span className="verseShort">
+                                                    <u className="font-bold">
+                                                      BG {`${showVerse.chapter_number}.${showVerse.verse_number}`}
+                                                    </u>
+                                                    {":"}
+                                                  </span>{" "}
+                                                  {item.description.split("।")[4]}
+                                                </p>
+                                                </div>
+                                              </>
+                                            ) : DefaultLanguage === "english" &&
+                                              item.language === "english" ? (
+                                              <>
+                                                <div className="title">
+                                                <h3 className="text-center font-bold">
+                                                  {item.author_name}
+                                                  </h3>
+                                                </div>
+
+                                                <p>
+                                                  <span className="verseShort">
+                                                    <u className="font-bold">
+                                                    BG {`${showVerse.chapter_number}.${showVerse.verse_number}`}
+                                                    </u>
+                                                    {":"}
+                                                  </span>{" "}
+                                                  {item.description}
+                                                </p>
+                                              </>
+                                            ) : (
+                                              <></>
+                                            )}
+                                          </>
+                                        );
+                                      }
+                                    )}
+                                  </>
                                 </div>
                               </div>
 
@@ -170,10 +213,12 @@ const VersePage = () => {
                                   {showVerse.commentaries.map((item, index) => {
                                     return (
                                       <>
-                                        {
-                                        DefaultLanguage === "english" &&
+                                        {DefaultLanguage === "english" &&
                                         item.language === "english" ? (
-                                          <div key={index} className="desc-content mt-3">
+                                          <div
+                                            key={index}
+                                            className="desc-content mt-3"
+                                          >
                                             <div className="title">
                                               <h3 className="text-center font-bold">
                                                 {item.author_name}
@@ -353,13 +398,17 @@ const Wrapper = styled.div`
         font-weight: 700;
       }
     }
-    .commentary {
-      .description {
-        .desc-content {
-          h3 {
+    .translation, .commentary{
+      .description{
+        h3 {
             color: ${({ theme }) => theme.colors.heading.primary};
             font-size: 1.5rem;
           }
+      }
+    }
+    .commentary {
+      .description {
+        .desc-content {
           p {
             color: ${({ theme }) => theme.colors.heading.primary};
             line-height: 2em;

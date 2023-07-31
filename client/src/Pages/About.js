@@ -15,7 +15,7 @@ const About = () => {
 
         <div className="wrapper mt-10 grid grid-rows-1 xl:grid-cols-2 xl:gap-4">
 
-          <div className="img-content w-full h-full">
+          <div className="img-content w-full h-full flex justify-center items-center">
             <div className="content overflow-hidden ">
             </div>
           </div>
@@ -111,9 +111,8 @@ const Wrapper = styled.section`
 
     .description {
       position: relative;
-      /* p{
-        color: #5b627d;
-      } */
+      width: auto;
+      max-width: 750px;
     }
   }
   @media (min-width: 1280px) {

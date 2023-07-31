@@ -22,12 +22,12 @@ const Navbar = ({ header, location }) => {
               <img
                 src={
                   location.pathname === "/"
-                    ?( !isdarkMode && header
+                    ? !isdarkMode && header
                       ? "/images/logo3.png"
-                      : "/images/logo2.png")
-                    : (!isdarkMode
+                      : "/images/logo2.png"
+                    : !isdarkMode
                     ? "/images/logo3.png"
-                    : "/images/logo2.png")
+                    : "/images/logo2.png"
                 }
                 alt="logo"
               />
@@ -115,12 +115,12 @@ const Navbar = ({ header, location }) => {
               <img
                 src={
                   location.pathname === "/"
-                    ?( !isdarkMode && header
+                    ? !isdarkMode && header
                       ? "/images/logo3.png"
-                      : "/images/logo2.png")
-                    : (!isdarkMode
+                      : "/images/logo2.png"
+                    : !isdarkMode
                     ? "/images/logo3.png"
-                    : "/images/logo2.png")
+                    : "/images/logo2.png"
                 }
                 alt="logo"
               />
@@ -156,10 +156,13 @@ const Wrapper = styled.nav`
     background-color: #250831;
     opacity: 0.1;
   }
+ 
 
   .navbar-container {
     grid-template-columns: 0.5fr 2fr 0.5fr;
+
     .navbar-link {
+      position: relative;
       font-size: 1.2rem;
       line-height: 1.5rem;
       color: white;
@@ -168,7 +171,7 @@ const Wrapper = styled.nav`
       text-decoration: none;
       font-weight: 500;
       text-transform: uppercase;
-      transition: color 0.3s linear;
+      transition: all 0.4s ease;
 
       &:link,
       &:visited {
@@ -176,10 +179,27 @@ const Wrapper = styled.nav`
       }
       &:hover,
       &:active {
-        transition: color 0.3s linear;
-        border-bottom: 2px solid orange;
+        color: orange;
+        /* transition: color 0.3s linear;
+        border-bottom: 2px solid orange; */
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: relative;
+        z-index: 1;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        transform: none;
+        background-color: orange;
+        transition: all 0.2s ease;
+        width: 0;
       }
     }
+
     .navbar-lists {
       ul {
         display: flex;
@@ -195,6 +215,10 @@ const Wrapper = styled.nav`
       font-size: 2rem;
       color: white;
     }
+  }
+
+ li:hover > .navbar-link::after {
+    width: 100%;
   }
 
   .mobile-navbar {
@@ -301,9 +325,20 @@ const Wrapper = styled.nav`
             .navbar-link {
               font-size: 1.5rem;
               color: white;
-              &:hover {
-                color: orange !important;
-                border: none !important;
+              transition: all 0.4s ease;
+              &:after {
+                content: "";
+                display: block;
+                position: relative;
+                z-index: 1;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                transform: none;
+                background-color: orange;
+                transition: all 0.2s ease;
+                width: 0;
               }
             }
           }

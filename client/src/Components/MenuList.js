@@ -1,12 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment} from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../Context/Context";
 import {BiChevronDown} from "react-icons/bi"
 
 const MenuList = () => {
 
-const {selectLanguage, DefaultLanguage} = useGlobalContext();
+const {selectLanguage} = useGlobalContext();
   
  const selectedLanguage = (data) =>{
   selectLanguage(data)
