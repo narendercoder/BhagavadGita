@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import ChapterBtn from "../Styles/ChapterBtn";
 import { useGlobalContext } from "../Context/Context";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Loading from "./Loading";
 
 const VerseTable = ({ singleChapter }) => {
   const { id, sh } = useParams();
   const { chapterVerses, isVersesLoading, DefaultLanguage } = useGlobalContext();
-
   return (
     <Wrapper>
       <aside className="right-section">
@@ -32,15 +31,15 @@ const VerseTable = ({ singleChapter }) => {
               chapterVerses.map((item, index) => {
                 return (
                   <>
-                    <Link
-                      key={index}
+                    <NavLink
+                      key={item.id}
                       to={`/chapter/${id}/slok/${index + 1}`}
                       className={
                         sh === index + 1 ? "verse-count active" : "verse-count"
                       }
                     >
                       <span>{index + 1}</span>
-                    </Link>
+                    </NavLink>
                   </>
                 );
               })

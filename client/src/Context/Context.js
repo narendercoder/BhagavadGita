@@ -88,7 +88,7 @@ const AppProvider = ({ children }) => {
     try {
       const response = await axios.get(`${API}/${url}`);
       const data = response.data;
-      console.log(data)
+      // console.log(data)
       dispatch({type: "GET_VERSE", payload: data})
     } catch (error) {
       dispatch({type: "SET_SINGLE_ERROR"})

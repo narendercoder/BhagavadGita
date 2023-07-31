@@ -7,7 +7,7 @@ import { useGlobalContext } from "../Context/Context";
 
 const Contact = () => {
   const { isdarkMode } = useGlobalContext();
-  console.log(isdarkMode)
+  // console.log(isdarkMode)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
