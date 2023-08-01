@@ -10,7 +10,7 @@ const Footer = () => {
       className="footer relative overflow-hidden flex flex-col justify-center items-center"
       id="footer"
     >
-      <div className="footer-container px-10 sm:px-3">
+      <div className="footer-container px-10">
         <div className="wrapper grid sm:grid-cols-3 gap-2">
 
           <div className="logo p-5">
@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="footer-link sm:mx-10 p-5 flex flex-col">
+          <div className="footer-link lg:mx-10 md:mx-5 p-5 flex flex-col">
             <div className="mb-2">
               <h1 className="text-xl font-bold">USEFUL LINKS</h1>
             </div>

@@ -68,4 +68,10 @@ background-color: orange;
 .btn{
     font-size: 1.5rem;
 }
+@media (max-width: 700px) {
+  width: 40px;
+  height: 40px;
+  bottom: 5rem;
+  left: 1rem;
+}
 `

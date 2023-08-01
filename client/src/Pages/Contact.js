@@ -194,7 +194,7 @@ const Wrapper = styled.section`
         letter-spacing: 5px;
       }
       .contact-form {
-        min-width: 700px;
+        min-width: 375px;
         .group-val {
           width: 100%;
           padding: 15px;
