@@ -7,4 +7,5 @@ module.exports = {
   
     PORT: process.env.PORT,
     CLIENT_ACCESS_URL: process.env.CLIENT_ACCESS_URL,
+    RAPID_API_KEY: process.env.RAPID_API_KEY
   };

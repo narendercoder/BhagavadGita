@@ -4,6 +4,7 @@ const axios = require("axios");
 const app = express();
 const contactRoutes = require("./routes/contactRoutes");
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
+require('dotenv').config();
 
 app.use(cors({
     origin: CLIENT_ACCESS_URL,
@@ -11,13 +12,16 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
 const options = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '43dad927f4msh75983f0bf4a29d5p1ac4d8jsna190ce106853',
+    'X-RapidAPI-Key': process.env.RAPID_API_KEY,
     'X-RapidAPI-Host': 'bhagavad-gita3.p.rapidapi.com'
   }
 };
+
+console.log(process.env.RAPID_API_KEY)
 
 //for get all chapters
 app.get("/chapters", async (req, res) => {
