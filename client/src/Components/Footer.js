@@ -30,7 +30,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="heading">
-              <p>
+              <p className="lg:text-base">
                 Bhagavad Gita is a practical guide to one's life that guides you
                 to re-organise your life, achieve inner peace and approach the
                 Supreme Lord (the Ultimate Reality)
@@ -119,6 +119,7 @@ const Wrapper = styled.footer`
     padding-top: 25px;
     padding-bottom: 25px;
     max-width: 1000px;
+    
     .logo{
       .heading{
         max-width: 30rem;
@@ -172,14 +173,37 @@ const Wrapper = styled.footer`
       }
     }
   }
-
-  @media (min-width: 700px) {
+  @media (min-width: 1016px) {
     .heading{
       p{
-        font-size: 0.75rem;
-        line-height: 1rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
       }
     }
   }
+
+  @media (min-width: 800px) and (max-width: 1016px) {
+    .heading{
+      p{
+        font-size: 0.85rem;
+        line-height: 1.2rem;
+      }
+    }
+  }
+  @media (min-width: 700px) and (max-width: 800px) {
+  
+    .heading{
+      p{
+        font-size: 0.7rem;
+        line-height: 1.2rem;
+      }
+    }
+  }
+  @media (max-width: 700px) {
+  
+  .footer-container{
+    min-width: 100%
+  }
+}
 
 `;

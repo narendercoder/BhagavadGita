@@ -18,10 +18,6 @@ const Chapters = () => {
     <Wrapper className="relative" id="chapters">
       <div className="chapter-container m-auto">
         <div className="wrapper flex flex-col justify-center">
-          {/* border */}
-          <div className="relative w-full h-full mb-5">
-            <img src="./images/border1.png" alt="border" />
-          </div>
 
           {/* title */}
           <div className="title mb-10">
@@ -72,12 +68,12 @@ const Wrapper = styled.div`
 
   @media (min-width: 900px) {
     .chapter-container {
-      padding: 60px 10rem;
+      padding: 0 10rem;
     }
   }
   @media (max-width: 900px) {
     .chapter-container {
-      padding: 60px 3rem;
+      padding: 0 3rem;
     }
   }
 `;

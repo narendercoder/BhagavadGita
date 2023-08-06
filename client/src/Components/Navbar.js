@@ -16,12 +16,18 @@ const Navbar = ({ header, location }) => {
           className="menu_mobile_overlay"
           onClick={() => setMenuIcon(false)}
         ></div>
-        <div className="navbar-container w-full grid gap-3">
+        <div className={menuIcon ? "navbar-container w-full grid gap-3 active" : "navbar-container w-full grid gap-3"}>
           <div className="logo">
             <NavLink to="/">
               <img
                 src={
-                  "/images/logo2.png" 
+                  location.pathname === "/" && !menuIcon
+                    ? !isdarkMode && header
+                      ? "/images/logo3.png"
+                      : "/images/logo2.png"
+                    : !isdarkMode
+                    ? "/images/logo3.png"
+                    : "/images/logo2.png"
                 }
                 alt="logo"
               />

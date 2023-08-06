@@ -8,20 +8,12 @@ const About = () => {
       id="about"
     >
       <div className="custom-container flex flex-col">
-        {/* border */}
-        <div className="relative w-full mb-10">
-          <img src="./images/border1.png" alt="border" />
-        </div>
-
-        <div className="wrapper mt-10 grid grid-rows-1 xl:grid-cols-2 xl:gap-4">
-
+        <div className="wrapper mt-36 md:mt-20 grid grid-rows-1 xl:grid-cols-2 xl:gap-4">
           <div className="img-content w-full h-full flex justify-center items-center">
             <div className="content overflow-hidden ">
             </div>
           </div>
-
           <div>
-
           <div className="title">
             <h3>
             <span className=" text-2xl text-orange-500">About</span> 

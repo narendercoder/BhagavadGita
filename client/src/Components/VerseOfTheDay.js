@@ -42,6 +42,7 @@ const Wrapper = styled.section`
   z-index: 80;
   .quote-of-day {
     padding: 0 50px;
+    padding-bottom: 60px;
     max-width: 1152px;
     min-height: 234px;
     .divider{

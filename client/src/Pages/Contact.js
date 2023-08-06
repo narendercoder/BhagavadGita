@@ -72,11 +72,8 @@ const Contact = () => {
   return (
     <Wrapper className="relative contact-section" id="contact">
       <div className="custom-container p-10">
-        <div className="wrapper">
-          {/* border */}
-          <div className="relative w-full h-full mb-10">
-            <img src="./images/border1.png" alt="border" />
-          </div>
+        <div className="wrapper mt-32 md:mt-20">
+          
           <div className="contact py-20 mx-auto justify-center items-center">
             <div className="contact-wrapper flex flex-col justify-center items-center">
               <div className="title flex flex-col justify-center items-center mb-5">

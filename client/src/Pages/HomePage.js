@@ -5,6 +5,7 @@ import About from './About'
 import Contact from './Contact'
 import styled from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import Border from '../Components/Border'
 
 const HomePage = () => {
   
@@ -24,8 +25,12 @@ const HomePage = () => {
         theme="light"
       />
       <HeroSection/>
+      <Border/>
       <Chapters/>
+      <Border/>
       <About/>
+      {/* border */}
+       <Border/>
       <Contact/>
     </Wrapper>
   )
