@@ -177,7 +177,7 @@ const Wrapper = styled.section`
       font-weight: 700;
       line-height: 1.2;
       font-size: 2.5em;
-      color: orange;
+      color: ${({ theme }) => theme.colors.orange};
     }
   }
   .submit-btn {
@@ -217,7 +217,7 @@ const Wrapper = styled.section`
               /* background-color: ${({ theme }) => theme.colors.bg.primary}; */
             }
             &:hover {
-              border-color: orange;
+              border-color: ${({ theme }) => theme.colors.orange};
             }
           }
 
@@ -245,7 +245,7 @@ const Wrapper = styled.section`
               left: 0;
               top: 0;
               z-index: 1;
-              background-color: orange;
+              background-color: ${({ theme }) => theme.colors.orange};
               transition: all 0.4s ease;
             }
           }

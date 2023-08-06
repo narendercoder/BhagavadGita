@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {BiChevronRight}  from "react-icons/bi"
 import {AiFillGithub, AiFillInstagram, AiFillLinkedin} from "react-icons/ai"
 
 const Footer = () => {
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
+
   return (
     <Wrapper
       className="footer relative overflow-hidden flex flex-col justify-center items-center"
@@ -33,18 +43,18 @@ const Footer = () => {
               <h1 className="text-xl font-bold">USEFUL LINKS</h1>
             </div>
             <ul>
-              <li>
+              <li onClick={scrollToTop}>
                 <Link to="/" className="flex items-center">
                 <span className="link-icon"><BiChevronRight/></span>
                 <span>Home</span>
                 </Link>
               </li>
-              <li>
+              <li onClick={scrollToTop}>
                 <Link to="About" className="flex items-center">
                 <span className="link-icon"><BiChevronRight/></span>
                 <span>About us</span></Link>
               </li>
-              <li>
+              <li onClick={scrollToTop}>
                 <Link to="Contact" className="flex items-center">
                   <span className="link-icon"><BiChevronRight/></span>
                   <span>Contact Us</span>
@@ -59,19 +69,19 @@ const Footer = () => {
             </div>
             <ul>
               <li>
-                <Link className="flex items-center">
+                <Link to="https://www.instagram.com/artist_narender/" className="flex items-center">
                 <span className="link-icon"><AiFillInstagram/></span>
                 <span>Instagram</span>
                 </Link>
               </li>
               <li>
-                <Link className="flex items-center">
+                <Link to="https://www.linkedin.com/in/narender-singh-bisht-4529051b7/" className="flex items-center">
                 <span className="link-icon"><AiFillLinkedin/></span>
                 <span>Linkedin</span>
                 </Link>
               </li>
               <li>
-                <Link className="flex items-center">
+                <Link to="https://github.com/narendercoder" className="flex items-center">
                 <span className="link-icon"><AiFillGithub/></span>
                 <span>Github</span>
                 </Link>
@@ -136,10 +146,10 @@ const Wrapper = styled.footer`
           font-size: 1.2rem;
           font-weight: 700;
           margin-right: 0.2rem;
-          color: orange;
+          color: ${({ theme }) => theme.colors.orange};
         }
         &:hover{
-          color: orange;
+          color: ${({ theme }) => theme.colors.orange};
           text-decoration: underline;
         }
         a {
@@ -155,8 +165,21 @@ const Wrapper = styled.footer`
         border-top: 1px solid #BCB4BF;
       }
       a{
-        color: orange
+        color: ${({ theme }) => theme.colors.orange};
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
   }
+
+  @media (min-width: 700px) {
+    .heading{
+      p{
+        font-size: 0.75rem;
+        line-height: 1rem;
+      }
+    }
+  }
+
 `;

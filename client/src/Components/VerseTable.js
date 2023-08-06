@@ -100,7 +100,7 @@ const Wrapper = styled.div`
       }
     }
     .verse-count.active {
-      background-color: orange;
+      background-color: ${({ theme }) => theme.colors.orange};
       text-decoration: none;
       cursor: pointer;
     }

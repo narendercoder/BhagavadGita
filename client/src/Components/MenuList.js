@@ -92,7 +92,7 @@ const Wrapper = styled.div`
 
   .menu-list-right {
     .menu-button{
-      background-color: orange;
+      background-color: ${({ theme }) => theme.colors.orange};
     }
   }
 `;

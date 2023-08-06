@@ -64,7 +64,7 @@ width: 50px;
 height: 50px;
 padding: 0.25rem;
 z-index: 99;
-background-color: orange;
+background-color: ${({ theme }) => theme.colors.orange};
 .btn{
     font-size: 1.5rem;
 }

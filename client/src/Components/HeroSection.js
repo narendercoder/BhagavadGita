@@ -91,7 +91,7 @@ const Wrapper = styled.section`
         font-weight: 500;
       }
       .btn{
-        background-color: orange;
+        background-color: ${({ theme }) => theme.colors.orange};
         width: 120px;
         border-radius: 20px;
         color: white;

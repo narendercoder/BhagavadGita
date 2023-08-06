@@ -157,10 +157,10 @@ const VersePage = () => {
                                               <>
                                                 <div
                                                   key={item.id}
-                                                  className="desc-content mt-3"
+                                                  className="desc-content mt-6"
                                                 >
                                                   <div className="title">
-                                                    <h3 className="text-center font-bold">
+                                                    <h3 className="text-center font-bold mb-0">
                                                       {item.author_name}
                                                     </h3>
                                                   </div>
@@ -186,10 +186,10 @@ const VersePage = () => {
                                               <>
                                                 <div
                                                   key={item.id}
-                                                  className="desc-content mt-3"
+                                                  className="desc-content mt-6"
                                                 >
                                                   <div className="title">
-                                                    <h3 className="text-center font-bold">
+                                                    <h3 className="text-center font-bold mb-0">
                                                       {item.author_name}
                                                     </h3>
                                                   </div>
@@ -222,7 +222,7 @@ const VersePage = () => {
                                   <h3 className="mb-0">Commentary</h3>
                                 </div>
 
-                                <div className="description w-full">
+                                <div className="description w-full ">
                                   {showVerse.commentaries.map((item, index) => {
                                     return (
                                       <>
@@ -238,7 +238,7 @@ const VersePage = () => {
                                               </h3>
                                             </div>
                                             <div className="content">
-                                              <p>{item.description}</p>
+                                              <p className="text-gray-400">{item.description}</p>
                                             </div>
                                           </div>
                                         ) : DefaultLanguage === "hindi" &&
@@ -254,7 +254,7 @@ const VersePage = () => {
                                                 </h3>
                                               </div>
                                               <div className="content">
-                                                <p>{item.description}</p>
+                                                <p className="text-gray-500">{item.description}</p>
                                               </div>
                                             </div>
                                           </>
@@ -401,14 +401,14 @@ const Wrapper = styled.div`
     }
     .translation {
       p {
-        color: ${({ theme }) => theme.colors.heading.primary};
+        color: ${({ theme }) => theme.colors.textgray};
         padding: 1rem;
         font-weight: 500;
       }
     }
     .heading {
       /* color: ${({ theme }) => theme.colors.heading.primary} */
-      background-color: orange;
+      background-color: ${({ theme }) => theme.colors.orange};
       h3 {
         font-size: 1.5em;
         font-weight: 700;
@@ -427,7 +427,7 @@ const Wrapper = styled.div`
       .description {
         .desc-content {
           p {
-            color: ${({ theme }) => theme.colors.heading.primary};
+            color: ${({ theme }) => theme.colors.textgray};
             line-height: 2em;
             padding: 1rem;
             font-weight: 500;

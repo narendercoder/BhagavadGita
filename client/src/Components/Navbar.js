@@ -21,13 +21,7 @@ const Navbar = ({ header, location }) => {
             <NavLink to="/">
               <img
                 src={
-                  location.pathname === "/"
-                    ? !isdarkMode && header
-                      ? "/images/logo3.png"
-                      : "/images/logo2.png"
-                    : !isdarkMode
-                    ? "/images/logo3.png"
-                    : "/images/logo2.png"
+                  "/images/logo2.png" 
                 }
                 alt="logo"
               />
@@ -179,7 +173,7 @@ const Wrapper = styled.nav`
       }
       &:hover,
       &:active {
-        color: orange;
+        color: ${({ theme }) => theme.colors.orange};
         /* transition: color 0.3s linear;
         border-bottom: 2px solid orange; */
       }
@@ -194,7 +188,7 @@ const Wrapper = styled.nav`
         left: 0;
         height: 2px;
         transform: none;
-        background-color: orange;
+        background-color: ${({ theme }) => theme.colors.orange};
         transition: all 0.2s ease;
         width: 0;
       }
@@ -336,7 +330,7 @@ const Wrapper = styled.nav`
                 left: 0;
                 height: 2px;
                 transform: none;
-                background-color: orange;
+                background-color: ${({ theme }) => theme.colors.orange};
                 transition: all 0.2s ease;
                 width: 0;
               }

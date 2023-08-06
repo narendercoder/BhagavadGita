@@ -21,7 +21,7 @@ const options = {
   }
 };
 
-console.log(process.env.RAPID_API_KEY)
+// console.log(process.env.RAPID_API_KEY)
 
 //for get all chapters
 app.get("/chapters", async (req, res) => {

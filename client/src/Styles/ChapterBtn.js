@@ -52,7 +52,7 @@ margin-bottom: 0.5em;
   width: 20%;
   border-radius: 2px;
   /* background-color: #ffc071; */
-  background-color: orange;
+  background-color: ${({ theme }) => theme.colors.orange};
   a{
   display: flex;
   justify-content: center;
@@ -76,7 +76,7 @@ margin-bottom: 0.5em;
   padding: 0.5em 0;
   border-radius: 2px;
   /* background-color: #ffc071; */
-  background-color: orange;
+  background-color: ${({ theme }) => theme.colors.orange};
   margin: 0 1.26582%;
   a{
     font-size: 1em;

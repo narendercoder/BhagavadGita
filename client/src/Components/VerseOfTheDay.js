@@ -12,16 +12,16 @@ const VerseOfTheDay = ({id, desc, chapter, verse}) => {
       <div className="bg-wrapper"></div>
      </div>
       <div className="flex flex-col p-10 md:justify-center w-full md:w-11/12">
-        <div className="title flex items-center mb-3">
-         <div className="heading mr-4 flex justify-center">
+        <div className="title flex flex-col md:flex-row items-center mb-3">
+         <div className="heading mb-5 md:mb-0 mr-4 flex justify-center">
           <h5 className="mb-0 font-semibold text-orange-500">{`Verse of the day - BG ${chapter}.${verse}`}</h5>
          </div>
-         <span className="divider mb-0 w-5/12 md:w-6/12 lg:w-7/12 h-0.5"></span>
+         <span className="divider mb-0 w-full md:w-6/12 lg:w-7/12 h-0.5"></span>
         </div>
-        <div className="description">
+        <div className="description text-center md:text-left">
           <p className="text-gray-500 truncate whitespace-normal">{desc}</p>
         </div>
-        <div className="button font-semibold text-sm cursor-pointer mt-2">
+        <div className="button text-center md:text-left font-semibold text-sm cursor-pointer mt-2">
           <Link to={`/chapter/${chapter}/slok/${verse}`}>
           SEE MORE
           </Link>

@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     z-index: 999;
     border-radius: 50%;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
-    background-color: orange;
+    background-color: ${({ theme }) => theme.colors.orange};
 
     .up-icon {
       font-size: 1.5rem;

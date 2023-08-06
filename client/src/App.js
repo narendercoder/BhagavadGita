@@ -34,6 +34,8 @@ function App() {
   
   const lightTheme = {
     colors: {
+      "textgray": "rgb(75, 85, 99)",
+      "orange": "orange",
       heading: {
         primary: "rgb(0, 0, 0)",
       },
@@ -58,6 +60,8 @@ function App() {
 
   const darkTheme = {
     colors: {
+      "textgray": "rgb(209 213 219)",
+      "orange": "orange",
       heading: {
         primary: "rgb(255, 255, 255)",
         "secondary": "rgb(160, 160, 160)",

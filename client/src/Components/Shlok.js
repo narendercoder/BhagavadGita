@@ -42,7 +42,7 @@ const Wrapper = styled.div`
     padding-bottom: 0.5em;
     .title {
       /* background-color: #ffc071; */
-      background-color: orange;
+      background-color: ${({ theme }) => theme.colors.orange};
       /* color: ${({ theme }) => theme.colors.heading.primary}; */
       /* color: ${({ theme }) => theme.colors.highlight.primary}; */
       margin-bottom: 10px;
