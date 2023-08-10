@@ -1,4 +1,5 @@
 module.exports = {
+    MONGO_URL: process.env.MONGO_URL,
     SMPT_SERVICES: process.env.SMPT_SERVICES,
     SMPT_MAIL: process.env.SMPT_MAIL,
     SMPT_PASSWORD: process.env.SMPT_PASSWORD,

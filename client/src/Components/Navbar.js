@@ -157,10 +157,10 @@ const Wrapper = styled.nav`
     opacity: 0.1;
   }
  
-
+ 
   .navbar-container {
     grid-template-columns: 0.5fr 2fr 0.5fr;
-
+   
     .navbar-link {
       position: relative;
       font-size: 1.2rem;
@@ -177,12 +177,12 @@ const Wrapper = styled.nav`
       &:visited {
         font-size: 1rem;
       }
-      &:hover,
       &:active {
         color: ${({ theme }) => theme.colors.orange};
         /* transition: color 0.3s linear;
         border-bottom: 2px solid orange; */
       }
+     
 
       &:after {
         content: "";
@@ -219,6 +219,9 @@ const Wrapper = styled.nav`
 
  li:hover > .navbar-link::after {
     width: 100%;
+  }
+  li:hover > .navbar-link{
+    color: ${({ theme }) => theme.colors.orange};
   }
 
   .mobile-navbar {

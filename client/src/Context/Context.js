@@ -18,7 +18,7 @@ const initialState = {
     chapter: [],
     image: "",
     description: "",
-    slok: {},
+    slok: [],
     singleChapter: {},
     chapterVerses: [],
     verse: {},

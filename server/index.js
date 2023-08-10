@@ -1,10 +1,16 @@
 const express = require("express");
+const connectDB = require("./config/db");
 const cors = require("cors");
 const axios = require("axios");
 const app = express();
 const contactRoutes = require("./routes/contactRoutes");
+const schedule = require('node-schedule');
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
+const verseRoute = require("./routes/verseRoute");
+const verseSchema = require("./models/verseSchema");
+
 require('dotenv').config();
+connectDB();
 
 app.use(cors({
     origin: CLIENT_ACCESS_URL,
@@ -36,21 +42,87 @@ app.get("/chapters", async (req, res) => {
 });
 
 //for random verse
-const slokcount = [47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78]
+// const slokcount = [47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78]
 
-const ch = Math.floor(Math.random() * 17) + 1
-const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1 
+// const ch = Math.floor(Math.random() * 17) + 1
+// const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1 
 
-app.get("/slok", async (req, res) => {
+// app.get("/slok", async (req, res) => {
+//   try {
+//     const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/verses/${sl}/`, options);
+//     const result = response.data;
+//     // console.log(result);
+//     res.send(result);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Something went wrong' });
+//   }
+// });
+
+const getRandomVerse = async()=>{
+  console.log("hello");
+  const slokcount = [
+    47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78,
+  ];
+
+  const ch = Math.floor(Math.random() * 17) + 1;
+  const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
+  
   try {
-    const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/verses/${sl}/`, options);
-    const result = response.data;
-    // console.log(result);
-    res.send(result);
+    // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
+    // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
+
+    // Delete previous day's data
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    await verseSchema.deleteMany({ createdAt: { $lt: yesterday } });
+    console.log("Previous data deleted successfully.");
+   
+    //Fetch api
+    const response = await await axios.get(
+      `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/verses/${sl}/`,
+      options
+    ); // Replace API_URL with your actual API endpoint
+    const apiData = response.data;
+
+    // Save data to MongoDB
+    const newVerse = new verseSchema({
+      id: apiData.id,
+      verse_number: apiData.verse_number,
+      chapter_number: apiData.chapter_number,
+      slug: apiData.slug,
+      text: apiData.text,
+      translations: apiData.translations
+    });
+
+    await newVerse.save();
+    // res.status(200).json( result );
+    console.log("Data saved successfully");
   } catch (error) {
-    res.status(500).json({ error: 'Something went wrong' });
+    console.error("Error:", error);
   }
+
+}
+
+//schedule the job to run every day at 12:00 AM
+const rule = new schedule.RecurrenceRule();
+rule.hour = 0;      // 0 represents 12:00 AM
+rule.minute = 0;
+rule.second = 0;
+
+schedule.scheduleJob(rule, function(){
+    getRandomVerse();
 });
+
+
+app.get("/slok", async(req, res)=>{
+   const result = await verseSchema.find({})
+   res.status(200).json(result)
+})
+
+// app.use("/slok", verseRoute)
+
+
+
 
 //for get all verses of particular chapter
 app.get("/chapter/:ch", async (req, res) => {
@@ -58,7 +130,7 @@ app.get("/chapter/:ch", async (req, res) => {
   try {
     const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/`, options);
     const result = response.data;
-    console.log(result);
+    // console.log(result);
     res.send(result);
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong' });

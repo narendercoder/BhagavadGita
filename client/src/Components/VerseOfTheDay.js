@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const VerseOfTheDay = ({id, desc, chapter, verse}) => {
-    // console.log()
+
   return (
     <Wrapper className='flex justify-center items-center mt-14 md:-mt-32'>
      <div className="flex quote-of-day">

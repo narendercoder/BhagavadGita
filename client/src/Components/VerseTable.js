@@ -30,7 +30,7 @@ const VerseTable = ({ singleChapter }) => {
             {!isVersesLoading ? (
               chapterVerses.map((item, index) => {
                 return (
-                  <>
+                  
                     <NavLink
                       key={item.id}
                       to={`/chapter/${id}/slok/${index + 1}`}
@@ -40,7 +40,7 @@ const VerseTable = ({ singleChapter }) => {
                     >
                       <span>{index + 1}</span>
                     </NavLink>
-                  </>
+                  
                 );
               })
             ) : (

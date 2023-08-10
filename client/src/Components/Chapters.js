@@ -33,15 +33,13 @@ const Chapters = () => {
             <div className="grid  gap-3 md:grid-cols-2 chapter-list">
               {chapters.map((item, index) => {
                 return (
-                  <>
                     <ChapterBox
                       id={item.id}
-                      key={index + 1}
+                      key={item.id}
                       heading={item.name_transliteration}
                       meaning={item.name_meaning}
                       desc={item.chapter_summary}
                     />
-                  </>
                 );
               })}
             </div>

@@ -114,15 +114,14 @@ const ChapterPage = () => {
                           </div>
                           {showChapterVerses.map((item, index) => {
                             return (
-                              <>
                                 <Shlok
                                   id={item.id}
+                                  key={item.id}
                                   verseNumber={item.verse_number}
                                   chapter={item.chapter_number}
                                   description={description(item.translations)}
                                   DefaultLanguage={DefaultLanguage}
                                 />
-                              </>
                             );
                           })}
                         </>

@@ -3,17 +3,12 @@ import styled from "styled-components";
 import { useGlobalContext } from "../Context/Context";
 import VerseOfTheDay from "./VerseOfTheDay";
 import { Link } from "react-scroll";
-import {Button }from "../Styles/Button";
+import { Button } from "../Styles/Button";
 
 const HeroSection = () => {
-  const [RandomSlok, setRandomSlok] = useState({});
   const { slok } = useGlobalContext();
 
-  // console.log(RandomSlok);
-
-  useEffect(() => {
-    setRandomSlok(slok);
-  }, [slok]);
+  console.log(slok);
 
   return (
     <>
@@ -24,11 +19,10 @@ const HeroSection = () => {
               <div className="hero-section-data flex flex-col justify-center items-center">
                 <h1 className="text-white">Experience the Gita</h1>
                 <h2 className="text-amber-400">Anywhere, Anytime.</h2>
-               
-                  <Button className="btn">
-                    <Link to="chapters">Explore</Link>
-                  </Button>
-          
+
+                <Button className="btn">
+                  <Link to="chapters">Explore</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -42,14 +36,10 @@ const HeroSection = () => {
       </Wrapper>
 
       <VerseOfTheDay
-        id={RandomSlok.id}
-        desc={
-          Object.keys(RandomSlok).length !== 0
-            ? RandomSlok.translations[3].description
-            : ""
-        }
-        chapter={RandomSlok.chapter_number}
-        verse={RandomSlok.verse_number}
+        id={slok.length !== 0 ? slok[0].id : ""}
+        desc={slok.length !== 0 ? slok[0].translations[0].description : ""}
+        chapter={slok.length !== 0 ? slok[0].chapter_number : ""}
+        verse={slok.length !== 0 ? slok[0].verse_number : ""}
       />
     </>
   );
@@ -90,7 +80,7 @@ const Wrapper = styled.section`
         margin-bottom: 30px;
         font-weight: 500;
       }
-      .btn{
+      .btn {
         background-color: ${({ theme }) => theme.colors.orange};
         width: 120px;
         border-radius: 20px;
@@ -98,10 +88,10 @@ const Wrapper = styled.section`
         display: flex;
         justify-content: center;
         align-items: center;
-        &:hover{
-          transform: scale(1.1)
+        &:hover {
+          transform: scale(1.1);
         }
-        a{
+        a {
           font-size: 1rem;
         }
       }
@@ -132,7 +122,6 @@ const Wrapper = styled.section`
       }
     }
   }
-
 
   @keyframes zoom-in {
     0% {
@@ -175,7 +164,7 @@ const Wrapper = styled.section`
     .hero-section-bg {
       height: 100vh;
     }
-   .hero-section-bg .hero-section-data .btn a{
+    .hero-section-bg .hero-section-data .btn a {
       font-size: 1.5rem;
     }
   }
