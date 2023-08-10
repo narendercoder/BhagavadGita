@@ -6,7 +6,6 @@ const app = express();
 const contactRoutes = require("./routes/contactRoutes");
 const schedule = require('node-schedule');
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
-const verseRoute = require("./routes/verseRoute");
 const verseSchema = require("./models/verseSchema");
 
 require('dotenv').config();
