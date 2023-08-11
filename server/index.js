@@ -48,14 +48,14 @@ app.get("/chapters", async (req, res) => {
 //for random verse
 
 const getRandomVerse = async () => {
-  const slokcount = [
-    47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78,
-  ];
-
-  const ch = Math.floor(Math.random() * 17) + 1;
-  const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
-
+  
   try {
+    const slokcount = [
+      47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78,
+    ];
+  
+    const ch = Math.floor(Math.random() * 17) + 1;
+    const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
     // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
     // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
 
@@ -95,16 +95,12 @@ const getRandomVerse = async () => {
   }
 };
 
-//schedule the job to run every day at 12:00 AM
-// const rule = new schedule.RecurrenceRule();
-// rule.hour = 0;      // 0 represents 12:00 AM
-// rule.minute = 0;
-// rule.second = 0;
-
+// Schedule the job to add data every day at 12:00 AM
 schedule.scheduleJob({ hour: 0, minute: 0, dayOfWeek: new schedule.Range(0, 6) }, function () {
   getRandomVerse();
 });
 
+// Route to retrieve slok data
 app.get("/slok", async (req, res) => {
   const result = await verseSchema.find({});
   res.status(200).json(result);
@@ -161,6 +157,7 @@ app.get("/chapter/:ch/slok/:sl", async (req, res) => {
 
 app.use("/contact", contactRoutes);
 
+// Start the Express server
 app.get("/", (req, res) => {
   res.send("hello world");
 });
