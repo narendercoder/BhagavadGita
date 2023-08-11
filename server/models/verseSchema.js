@@ -25,10 +25,9 @@ const verseSchema = new mongoose.Schema({
   translations: [{
     
   }],
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
+},
+{
+  timestamps: true,
 });
 
 module.exports = mongoose.model("RandomVerse", verseSchema);

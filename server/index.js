@@ -56,6 +56,7 @@ const getRandomVerse = async () => {
   
     const ch = Math.floor(Math.random() * 17) + 1;
     const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
+
     // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
     // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
 

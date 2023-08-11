@@ -64,12 +64,12 @@ const Wrapper = styled.div`
   }
   /* background-color: rgba(250,247,237, 0.1); */
 
-  @media (min-width: 900px) {
+  @media (min-width: 1175px) {
     .chapter-container {
-      padding: 60px 10rem;
+      padding: 60px 8rem;
     }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1175px) {
     .chapter-container {
       padding: 60px 3rem;
     }
