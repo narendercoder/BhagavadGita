@@ -7,8 +7,8 @@ import Loading from "./Loading";
 const Chapters = () => {
   const [chapters, setChapters] = useState([]);
   const { chapter, isChapterLoading } = useGlobalContext();
-
-  // console.log(isChapterLoading);
+  const { DefaultLanguage} = useGlobalContext();
+  console.log(chapter);
 
   useEffect(() => {
     setChapters(chapter);
@@ -36,9 +36,9 @@ const Chapters = () => {
                     <ChapterBox
                       id={item.id}
                       key={item.id}
-                      heading={item.name_transliteration}
-                      meaning={item.name_meaning}
-                      desc={item.chapter_summary}
+                      heading={item.name_transliterated}
+                      meaning={item.name_meaning }
+                      desc={DefaultLanguage === "english" ? item.chapter_summary : item.chapter_summary_hindi}
                     />
                 );
               })}
@@ -66,12 +66,12 @@ const Wrapper = styled.div`
 
   @media (min-width: 900px) {
     .chapter-container {
-      padding: 0 10rem;
+      padding: 60px 10rem;
     }
   }
   @media (max-width: 900px) {
     .chapter-container {
-      padding: 0 3rem;
+      padding: 60px 3rem;
     }
   }
 `;

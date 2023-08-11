@@ -23,7 +23,7 @@ const ChapterBox = ({ id, heading, meaning, desc }) => {
             </div>
 
             <div className="description mr-4">
-              <h4 className="mb-1 text-xl font-bold">{heading}</h4>
+              {/* <h4 className="mb-1 text-xl font-semibold">{heading}</h4> */}
               <span>{meaning}</span>
             </div>
           </div>
