@@ -42,63 +42,47 @@ const Navbar = ({ header, location }) => {
             <CgClose
               name="close-outline"
               className="mobile-nav-icon close-outline"
-              onClick={() => setMenuIcon(false)}
+              onClick={() => setMenuIcon(false)  }
             />
           </div>
 
           <div className="navbar-lists flex justify-center items-center">
             <ul>
               <li>
-                <Link
+                <NavLink
                   to="/"
-                  activeclass="active"
-                  smooth={"true"}
-                  offset={-50}
-                  duration={500}
                   onClick={() => setMenuIcon(false)}
                   className="navbar-link "
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to="/about"
-                  activeclass="active"
-                  smooth={"true"}
-                  offset={-50}
-                  duration={500}
                   className="navbar-link "
                   onClick={() => setMenuIcon(false)}
                 >
                   About Us
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to="/chapters"
-                  activeclass="active"
-                  smooth={"true"}
-                  offset={-50}
-                  duration={500}
                   className="navbar-link "
                   onClick={() => setMenuIcon(false)}
                 >
                   Chapters
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to="/contact"
-                  activeclass="active"
-                  smooth={"true"}
-                  offset={-50}
-                  duration={500}
                   className="navbar-link "
                   onClick={() => setMenuIcon(false)}
                 >
                   Contact Us
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>

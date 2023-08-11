@@ -21,7 +21,7 @@ const {DefaultLanguage} = useGlobalContext();
         <div className="menu-list-right px-3">
           <Menu as="div" className="relative text-left ">
             <div className="flex justify-center items-center">
-              <Menu.Button className="menu-button capitalize inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium ">
+              <Menu.Button className="menu-button capitalize text-black inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium ">
                 {DefaultLanguage}
                 <BiChevronDown
               className="ml-2 -mr-1 h-5 w-5"
