@@ -5,6 +5,7 @@ import { CgClose, CgMenu } from "react-icons/cg";
 import Toggler from "./Toggler";
 import { Link, NavLink } from "react-router-dom";
 import { useGlobalContext } from "../Context/Context";
+import LanguageBtn from "../Styles/LanguageBtn";
 
 const Navbar = ({ header, location }) => {
   const [menuIcon, setMenuIcon] = useState(false);
@@ -16,7 +17,13 @@ const Navbar = ({ header, location }) => {
           className="menu_mobile_overlay"
           onClick={() => setMenuIcon(false)}
         ></div>
-        <div className={menuIcon ? "navbar-container w-full grid gap-3 active" : "navbar-container w-full grid gap-3"}>
+        <div
+          className={
+            menuIcon
+              ? "navbar-container w-full grid gap-3 active"
+              : "navbar-container w-full grid gap-3"
+          }
+        >
           <div className="logo">
             <NavLink to="/">
               <img
@@ -98,6 +105,7 @@ const Navbar = ({ header, location }) => {
 
           <div className="mode-toggler flex justify-end items-center mr-3">
             <Toggler />
+            <LanguageBtn/>
           </div>
         </div>
 
@@ -129,6 +137,7 @@ const Navbar = ({ header, location }) => {
 
           <div className="mobile-mode-toggler flex justify-end">
             <Toggler />
+            <LanguageBtn/>
           </div>
         </div>
       </div>
@@ -156,11 +165,10 @@ const Wrapper = styled.nav`
     background-color: #250831;
     opacity: 0.1;
   }
- 
- 
+
   .navbar-container {
     grid-template-columns: 0.5fr 2fr 0.5fr;
-   
+
     .navbar-link {
       position: relative;
       font-size: 1.2rem;
@@ -182,7 +190,6 @@ const Wrapper = styled.nav`
         /* transition: color 0.3s linear;
         border-bottom: 2px solid orange; */
       }
-     
 
       &:after {
         content: "";
@@ -217,10 +224,10 @@ const Wrapper = styled.nav`
     }
   }
 
- li:hover > .navbar-link::after {
+  li:hover > .navbar-link::after {
     width: 100%;
   }
-  li:hover > .navbar-link{
+  li:hover > .navbar-link {
     color: ${({ theme }) => theme.colors.orange};
   }
 
@@ -325,6 +332,7 @@ const Wrapper = styled.nav`
             padding: 1.5rem 0;
             width: 100%;
             border-bottom: 2px solid rgba(95, 44, 112, 0.5);
+
             .navbar-link {
               font-size: 1.5rem;
               color: white;
@@ -351,5 +359,7 @@ const Wrapper = styled.nav`
         display: none;
       }
     }
+
+    
   }
 `;

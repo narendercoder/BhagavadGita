@@ -5,7 +5,6 @@ import Shlok from "../Components/Shlok";
 import styled from "styled-components";
 import VerseTable from "../Components/VerseTable";
 import Loading from "../Components/Loading";
-import MenuList from "../Components/MenuList";
 
 const ChapterPage = () => {
   const { id } = useParams();
@@ -64,7 +63,6 @@ const ChapterPage = () => {
                 </>
               ) : (
                 <>
-                  <MenuList/>
                   <div className="relative chapter-intro pt-20 pb-10 flex justify-center flex-col items-center">
                     <div className="chapter-heading mb-3 flex justify-center flex-col items-center">
                       <h3 className="font-bold mb-0">

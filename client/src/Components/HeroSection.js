@@ -6,7 +6,7 @@ import { Link } from "react-scroll";
 import { Button } from "../Styles/Button";
 
 const HeroSection = () => {
-  const { slok } = useGlobalContext();
+  const { slok} = useGlobalContext();
 
   // console.log(slok);
 
@@ -37,7 +37,7 @@ const HeroSection = () => {
 
       <VerseOfTheDay
         id={slok.length !== 0 ? slok[0].id : ""}
-        desc={slok.length !== 0 ? slok[0].translations[0].description : ""}
+        desc={slok.length !== 0 ?  slok[0].translations : ""}
         chapter={slok.length !== 0 ? slok[0].chapter_number : ""}
         verse={slok.length !== 0 ? slok[0].verse_number : ""}
       />

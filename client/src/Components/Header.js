@@ -31,5 +31,8 @@ const Wrapper = styled.div`
     .mobile-nav-icon[name= "menu-outline"]{
       color: ${({ theme }) => theme.colors.heading.primary};
     }
+    li:hover > .navbar-link {
+      color: ${({ theme }) => theme.colors.orange};
+    }
   }
 `;

@@ -46,22 +46,6 @@ app.get("/chapters", async (req, res) => {
 });
 
 //for random verse
-// const slokcount = [47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78]
-
-// const ch = Math.floor(Math.random() * 17) + 1
-// const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1
-
-// app.get("/slok", async (req, res) => {
-//   try {
-//     const response = await axios.get(`https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${ch}/verses/${sl}/`, options);
-//     const result = response.data;
-//     // console.log(result);
-//     res.send(result);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Something went wrong' });
-//   }
-// });
-
 
 const getRandomVerse = async () => {
   const slokcount = [
@@ -117,7 +101,7 @@ const getRandomVerse = async () => {
 // rule.minute = 0;
 // rule.second = 0;
 
-schedule.scheduleJob("0 0 * * *", function () {
+schedule.scheduleJob({ hour: 0, minute: 0, dayOfWeek: new schedule.Range(0, 6) }, function () {
   getRandomVerse();
 });
 
@@ -126,7 +110,6 @@ app.get("/slok", async (req, res) => {
   res.status(200).json(result);
 });
 
-// app.use("/slok", verseRoute)
 
 //for get all verses of particular chapter
 app.get("/chapter/:ch", async (req, res) => {

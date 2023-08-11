@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import VerseTable from "../Components/VerseTable";
 import Loading from "../Components/Loading";
-import MenuList from "../Components/MenuList";
 
 const VersePage = () => {
   const { id, sh } = useParams();
@@ -87,7 +86,6 @@ const VersePage = () => {
                         </>
                       ) : (
                         <>
-                          <MenuList />
                           <div className="chapter-intro flex justify-center flex-col items-center">
                             <div className="chapter-heading  flex justify-center flex-col items-center">
                               <h4 className="font-bold mb-5">
