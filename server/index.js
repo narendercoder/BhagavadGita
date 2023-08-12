@@ -46,7 +46,6 @@ app.get("/chapters", async (req, res) => {
 });
 
 //for random verse
-
 const getRandomVerse = async () => {
   
   try {
