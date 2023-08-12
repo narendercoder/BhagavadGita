@@ -36,10 +36,10 @@ const HeroSection = () => {
       </Wrapper>
 
       <VerseOfTheDay
-        id={slok[0] !== null ? slok[0].id : ""}
-        desc={slok[0] !== null ?  slok[0].translations : ""}
-        chapter={slok[0] !== null ? slok[0].chapter_number : ""}
-        verse={slok[0] !== null ? slok[0].verse_number : ""}
+        id={slok.length !== 0 ? slok[0].id : ""}
+        desc={slok.length !== 0 ?  slok[0].translations : ""}
+        chapter={slok.length !== 0 ? slok[0].chapter_number : ""}
+        verse={slok.length !== 0 ? slok[0].verse_number : ""}
       />
     </>
   );

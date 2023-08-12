@@ -8,10 +8,6 @@ const cron = require('node-cron');
 // const schedule = require("node-schedule");
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
 const verseSchema = require("./models/verseSchema");
-
-require("dotenv").config();
-connectDB();
-
 app.use(
   cors({
     origin: CLIENT_ACCESS_URL,
@@ -20,6 +16,9 @@ app.use(
 );
 
 app.use(express.json());
+
+require("dotenv").config();
+connectDB();
 
 const options = {
   method: "GET",
@@ -79,29 +78,36 @@ const getRandomVerse = async () => {
     // res.status(200).json( result );
     console.log("Data saved successfully");
 
-    // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
-    // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
+    // Limit the collection size by new older records
+    const maxCollectionSize = 2; // Set your desired maximum collection size
+    const totalDocuments = await verseSchema.countDocuments();
 
-    // Delete previous day's data
-    const previousDate = new Date();
-    previousDate.setDate(previousDate.getDate() - 1);
-    await verseSchema.deleteMany({ createdAt: { $lt: previousDate } });
-    console.log("Previous data deleted successfully.");
+    if (totalDocuments > maxCollectionSize) {
+        const oldestVerses = await verseSchema.find().sort({ createdAt: -1 }).limit(totalDocuments - maxCollectionSize);
+        await verseSchema.deleteMany({ _id: { $in: oldestVerses.map(verse => verse._id) } });
+        console.log('Newer records deleted successfully');
+    }
 
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
-// Schedule the job to add data every day at 6:00 PM
-cron.schedule('35 18 * * *', function () {
-  getRandomVerse();
-}, {
-  timezone: 'Asia/Kolkata'
-});
-
 // Route to retrieve slok data
 app.get("/slok", async (req, res) => {
+
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+
+  if(now >= midnight){
+    await getRandomVerse();
+    await verseSchema.deleteMany({ createdAt: { $lt: midnight } });
+    console.log("Old records deleted after 12 AM");
+  }
+  else{
+    await getRandomVerse();
+  }
+
   const result = await verseSchema.find({});
   res.status(200).json(result);
 });
