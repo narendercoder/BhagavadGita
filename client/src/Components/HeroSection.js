@@ -7,9 +7,6 @@ import { Button } from "../Styles/Button";
 
 const HeroSection = () => {
   const { slok} = useGlobalContext();
-
-  // console.log(slok);
-
   return (
     <>
       <Wrapper className="relative hero-section">
