@@ -94,7 +94,7 @@ const getRandomVerse = async () => {
 };
 
 // Schedule the job to add data every day at 6:00 PM
-cron.schedule('0 18 * * *', function () {
+cron.schedule('35 18 * * *', function () {
   getRandomVerse();
 }, {
   timezone: 'Asia/Kolkata'
