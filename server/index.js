@@ -4,7 +4,8 @@ const cors = require("cors");
 const axios = require("axios");
 const app = express();
 const contactRoutes = require("./routes/contactRoutes");
-const schedule = require("node-schedule");
+const cron = require('node-cron');
+// const schedule = require("node-schedule");
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
 const verseSchema = require("./models/verseSchema");
 
@@ -80,26 +81,29 @@ const getRandomVerse = async () => {
 
     // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
     // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
-    // // Delete previous day's data
-    // const previousDate = new Date();
-    // previousDate.setDate(previousDate.getDate() - 1);
-    // await verseSchema.deleteMany({ createdAt: { $lt: previousDate } });
-    // console.log("Previous data deleted successfully.");
+
+    // Delete previous day's data
+    const previousDate = new Date();
+    previousDate.setDate(previousDate.getDate() - 1);
+    await verseSchema.deleteMany({ createdAt: { $lt: previousDate } });
+    console.log("Previous data deleted successfully.");
 
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
-// Schedule the job to add data every day at 12:00 AM
-schedule.scheduleJob('0 0 * * *', function () {
+// Schedule the job to add data every day at 6:00 PM
+cron.schedule('0 18 * * *', function () {
   getRandomVerse();
+}, {
+  timezone: 'Asia/Kolkata'
 });
 
 // Route to retrieve slok data
 app.get("/slok", async (req, res) => {
-  const result = await verseSchema.findOne().sort('-createdAt');
-  res.status(200).json([result]);
+  const result = await verseSchema.find({});
+  res.status(200).json(result);
 });
 
 
