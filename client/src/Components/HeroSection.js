@@ -8,7 +8,7 @@ import { Button } from "../Styles/Button";
 const HeroSection = () => {
   const { slok} = useGlobalContext();
 
-  console.log(slok);
+  // console.log(slok);
 
   return (
     <>
