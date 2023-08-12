@@ -13,7 +13,7 @@ const toggleMode = () => {
   setToggle(!isdarkMode);
 };
   return (
-    <Wrapper>
+    <Wrapper className='flex justify-center items-center'>
       {toggle === false ? (
         <RiMoonLine className="icon" onClick={() => toggleMode()} />
       ) : (
