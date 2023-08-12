@@ -6,5 +6,11 @@
     ],
     "routes": [
        { "src": "/(.*)", "dest": "/" }
+    ],
+    "crons": [
+      {
+         "path": "/slok",
+         "schedule": "0 0 * * *"
+      }
     ]
  }
