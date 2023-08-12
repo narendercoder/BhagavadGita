@@ -1,13 +1,14 @@
 const express = require("express");
+require("dotenv").config();
 const connectDB = require("./config/db");
 const cors = require("cors");
 const axios = require("axios");
 const app = express();
 const contactRoutes = require("./routes/contactRoutes");
-const cron = require('node-cron');
-// const schedule = require("node-schedule");
 const { CLIENT_ACCESS_URL } = require("../server/config/keys");
 const verseSchema = require("./models/verseSchema");
+
+connectDB();
 app.use(
   cors({
     origin: CLIENT_ACCESS_URL,
@@ -16,9 +17,6 @@ app.use(
 );
 
 app.use(express.json());
-
-require("dotenv").config();
-connectDB();
 
 const options = {
   method: "GET",
