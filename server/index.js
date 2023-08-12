@@ -57,9 +57,6 @@ const getRandomVerse = async () => {
     const ch = Math.floor(Math.random() * 17) + 1;
     const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
 
-    // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
-    // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
-
 
     //Fetch api
     const response = await await axios.get(
@@ -82,26 +79,28 @@ const getRandomVerse = async () => {
     // res.status(200).json( result );
     console.log("Data saved successfully");
 
-    // Delete previous day's data
-    // Get the current date
-    const currentDate = new Date();
-    // Calculate the previous date
-    const previousDate = new Date();
-    previousDate.setDate(currentDate.getDate() - 1);
-
-    await verseSchema.deleteMany({ createdAt: { $lt: previousDate } });
-    console.log("Previous data deleted successfully.");
+    // const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
+    // await verseSchema.deleteMany({ createdAt: { $lt: oneMinuteAgo } });
+    // // Delete previous day's data
+    // const previousDate = new Date();
+    // previousDate.setDate(previousDate.getDate() - 1);
+    // await verseSchema.deleteMany({ createdAt: { $lt: previousDate } });
+    // console.log("Previous data deleted successfully.");
 
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
+// Schedule the job to add data every day at 12:00 AM
+schedule.scheduleJob('0 0 * * *', function () {
+  getRandomVerse();
+});
+
 // Route to retrieve slok data
 app.get("/slok", async (req, res) => {
-  getRandomVerse();
-  const result = await verseSchema.find({});
-  res.status(200).json(result);
+  const result = await verseSchema.findOne().sort('-createdAt');
+  res.status(200).json([result]);
 });
 
 
