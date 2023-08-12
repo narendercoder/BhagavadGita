@@ -13,7 +13,7 @@ const toggleMode = () => {
   setToggle(!isdarkMode);
 };
   return (
-    <Wrapper className='flex justify-center items-center'>
+    <Wrapper>
       {toggle === false ? (
         <RiMoonLine className="icon" onClick={() => toggleMode()} />
       ) : (
@@ -26,7 +26,7 @@ const toggleMode = () => {
 export default Toggler;
 
 const Wrapper = styled.div`
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;

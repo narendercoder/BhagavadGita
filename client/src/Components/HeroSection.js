@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../Context/Context";
 import VerseOfTheDay from "./VerseOfTheDay";
@@ -8,7 +8,7 @@ import { Button } from "../Styles/Button";
 const HeroSection = () => {
   const { slok} = useGlobalContext();
 
-  // console.log(slok);
+  console.log(slok);
 
   return (
     <>
@@ -36,10 +36,10 @@ const HeroSection = () => {
       </Wrapper>
 
       <VerseOfTheDay
-        id={slok.length !== 0 ? slok[0].id : ""}
-        desc={slok.length !== 0 ?  slok[0].translations : ""}
-        chapter={slok.length !== 0 ? slok[0].chapter_number : ""}
-        verse={slok.length !== 0 ? slok[0].verse_number : ""}
+        id={slok[0] !== null ? slok[0].id : ""}
+        desc={slok[0] !== null ?  slok[0].translations : ""}
+        chapter={slok[0] !== null ? slok[0].chapter_number : ""}
+        verse={slok[0] !== null ? slok[0].verse_number : ""}
       />
     </>
   );

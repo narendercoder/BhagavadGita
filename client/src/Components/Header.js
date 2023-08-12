@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   .header.active {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     background-color: ${({ theme }) => theme.colors.bg.primary};
+    .navbar-link,
     .mode-toggler,
     .mobile-mode-toggler,
     .mobile-nav-icon[name="menu-outline"] {

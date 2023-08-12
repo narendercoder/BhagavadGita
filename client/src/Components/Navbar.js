@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CgClose, CgMenu } from "react-icons/cg";
 import Toggler from "./Toggler";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../Context/Context";
 import LanguageBtn from "../Styles/LanguageBtn";
 
