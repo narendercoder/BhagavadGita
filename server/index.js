@@ -102,10 +102,8 @@ app.get("/slok", async (req, res) => {
     await verseSchema.deleteMany({ createdAt: { $lt: midnight } });
     console.log("Old records deleted after 12 AM");
   }
-  else{
-    await getRandomVerse();
-  }
-
+  
+  console.log("show result")
   const result = await verseSchema.find({});
   res.status(200).json(result);
 });
