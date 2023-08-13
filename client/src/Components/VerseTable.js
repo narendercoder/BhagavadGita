@@ -8,8 +8,15 @@ import Loading from "./Loading";
 const VerseTable = ({ singleChapter }) => {
   const { id, sh } = useParams();
   const { chapterVerses, isVersesLoading, DefaultLanguage } = useGlobalContext();
+  const  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
   return (
-    <Wrapper>
+    <Wrapper data-aos="fade-up" data-aos-delay="200">
       <aside className="right-section">
         <div className="right-content">
           <div className="coverImg">
@@ -34,6 +41,7 @@ const VerseTable = ({ singleChapter }) => {
                     <NavLink
                       key={item.id}
                       to={`/chapter/${id}/slok/${index + 1}`}
+                      onClick={scrollToTop}
                       className={
                         sh === index + 1 ? "verse-count active" : "verse-count"
                       }

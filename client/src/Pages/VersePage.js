@@ -78,7 +78,7 @@ const VersePage = () => {
             {Object.keys(verse).length !== 0 ? (
               <>
                 <div className="custom-container flex justify-center">
-                  <div className="inner-container">
+                  <div className="inner-container" data-aos="fade-up" data-aos-delay="200">
                     <div className="main-section flex justify-center flex-col">
                       {isVerseLoading ? (
                         <>

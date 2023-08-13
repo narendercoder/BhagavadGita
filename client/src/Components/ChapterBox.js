@@ -5,16 +5,26 @@ import styled from "styled-components";
 const ChapterBox = ({ id, heading, meaning, desc }) => {
   let navigate = useNavigate();
 
+  const  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
   const OpenChapter = (id) => {
     navigate(`/chapter/${id}`);
+    scrollToTop();
   };
 
   return (
     <Wrapper
       className="chapter"
       onClick={() => OpenChapter(id)}
+      data-aos="fade-up" data-aos-delay="200"
     >
-      <div className="chapter-box">
+      <div className="chapter-box" >
         <div className="h-full flex flex-col p-10 justify-center">
           <div className="title flex flex-col mb-3">
             <div className="heading mr-4">

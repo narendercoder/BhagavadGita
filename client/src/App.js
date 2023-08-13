@@ -1,5 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import About from "./Pages/About";
 import { GlobalStyle } from "./GlobalStyle/GlobalStyle";
 import { ThemeProvider } from "styled-components";
@@ -14,6 +16,9 @@ import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Footer from "./Components/Footer";
 import Preloader from "./Components/Preloader";
 import Header from "./Components/Header";
+import { useEffect } from "react";
+
+
 
 
 function App() {
@@ -85,16 +90,16 @@ function App() {
     },
   };
 
-  
 
-  // console.log(location.pathname)
 
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //       setloading(false);
-  //     }, 1000);
-  //   // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 1000,
+      offset: 100,
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <ThemeProvider theme={isdarkMode ? darkTheme : lightTheme}>
