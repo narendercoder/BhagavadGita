@@ -45,15 +45,13 @@ app.get("/chapters", async (req, res) => {
 
 //for random verse
 const getRandomVerse = async () => {
-  
   try {
     const slokcount = [
       47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78,
     ];
-  
+
     const ch = Math.floor(Math.random() * 17) + 1;
     const sl = Math.floor(Math.random() * slokcount[ch - 1]) + 1;
-
 
     //Fetch api
     const response = await await axios.get(
@@ -75,17 +73,6 @@ const getRandomVerse = async () => {
     await newVerse.save();
     // res.status(200).json( result );
     console.log("Data saved successfully");
-
-    // Limit the collection size by new older records
-    const maxCollectionSize = 2; // Set your desired maximum collection size
-    const totalDocuments = await verseSchema.countDocuments();
-
-    if (totalDocuments > maxCollectionSize) {
-        const oldestVerses = await verseSchema.find().sort({ createdAt: -1 }).limit(totalDocuments - maxCollectionSize);
-        await verseSchema.deleteMany({ _id: { $in: oldestVerses.map(verse => verse._id) } });
-        console.log('Newer records deleted successfully');
-    }
-
   } catch (error) {
     console.error("Error:", error);
   }
@@ -93,21 +80,37 @@ const getRandomVerse = async () => {
 
 // Route to retrieve slok data
 app.get("/slok", async (req, res) => {
-
+ try {
   const now = new Date();
-  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  const midnight = new Date(now.getFullYear(),now.getMonth(), now.getDate(),0, 0, 0 );
 
-  if(now >= midnight){
-    await getRandomVerse();
-    await verseSchema.deleteMany({ createdAt: { $lt: midnight } });
-    console.log("Old records deleted after 12 AM");
+  // Limit the collection size by new older records
+  const maxCollectionSize = 1; // Set your desired maximum collection size
+  const totalDocuments = await verseSchema.countDocuments();
+  console.log(totalDocuments)
+  if (totalDocuments == 0) {
+    await getRandomVerse()
+    console.log("API Fetch Sucessfully")
+  } else 
+  {
+    if (totalDocuments > maxCollectionSize) {
+      const oldestVerses = await verseSchema.find().sort({ createdAt: -1 }).limit(totalDocuments - maxCollectionSize);
+      await verseSchema.deleteMany({_id: { $in: oldestVerses.map((verse) => verse._id) }, });
+      console.log("Newer records deleted successfully");
+    }
+    if (now >= midnight) {
+      await verseSchema.deleteMany({ createdAt: { $lt: midnight } });
+      console.log("Old records deleted after 12 AM");
+    }
   }
-  
-  console.log("show result")
   const result = await verseSchema.find({});
   res.status(200).json(result);
+  console.log("show result");
+ } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+ }
 });
-
 
 //for get all verses of particular chapter
 app.get("/chapter/:ch", async (req, res) => {
