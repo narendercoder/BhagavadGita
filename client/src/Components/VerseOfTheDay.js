@@ -5,7 +5,7 @@ import { useGlobalContext } from "../Context/Context";
 
 const VerseOfTheDay = ({ id, desc, chapter, verse }) => {
   const { DefaultLanguage} = useGlobalContext();
-  // console.log(desc)
+
   return (
     <Wrapper className="flex justify-center items-center mt-14 md:-mt-32">
       <div className="flex quote-of-day">

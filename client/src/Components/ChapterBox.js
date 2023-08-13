@@ -7,7 +7,6 @@ const ChapterBox = ({ id, heading, meaning, desc }) => {
 
   const OpenChapter = (id) => {
     navigate(`/chapter/${id}`);
-    // console.log(id);
   };
 
   return (

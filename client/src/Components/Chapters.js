@@ -8,7 +8,6 @@ const Chapters = () => {
   const [chapters, setChapters] = useState([]);
   const { chapter, isChapterLoading } = useGlobalContext();
   const { DefaultLanguage} = useGlobalContext();
-  // console.log(chapter);
 
   useEffect(() => {
     setChapters(chapter);
