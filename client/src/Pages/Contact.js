@@ -7,19 +7,23 @@ import { useGlobalContext } from "../Context/Context";
 
 const Contact = () => {
   const { isdarkMode } = useGlobalContext();
-  // console.log(isdarkMode)
+
+  // Initialize form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
+  // Handle form input changes
   const handleChange = (e) => {
-    // console.log(e.target.name , e.target.value)
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check for empty fields
     if (
       formData.name === "" ||
       formData.email === "" ||
@@ -37,19 +41,44 @@ const Contact = () => {
       });
       
     }
-    // console.log(formData)
+
+     // Prepare form data
     const data = {
       name: formData.name,
       email: formData.email,
       message: formData.message,
     };
-    const res = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/contact`,
-      data
-    );
-    // console.log(res.data.success);
-    if (res.data.success === true) {
-      toast.success("Thank You! Your Message has been sent sucessfully!", {
+
+    // Send form data to the backend
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/contact`,
+        data
+      );
+  
+      // Show success notification
+      if (res.data.success === true) {
+        toast.success("Thank You! Your Message has been sent sucessfully!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: isdarkMode ? "dark" : "light",
+        });
+      }
+  
+       // Clear form fields
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      // Handle error here (display an error toast, etc.)
+      toast.error("There is a error in form submission", {
         position: "top-right",
         autoClose: 1000,
         hideProgressBar: false,
@@ -60,15 +89,8 @@ const Contact = () => {
         theme: isdarkMode ? "dark" : "light",
       });
     }
-    // console.log("clear");
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
   };
 
-  // console.log(formData);
   return (
     <Wrapper className="relative contact-section" id="contact">
       <div className="custom-container p-10">

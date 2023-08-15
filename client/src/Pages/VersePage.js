@@ -75,6 +75,7 @@ const VersePage = () => {
       <Wrapper>
         <div className="wrapper px-0 xl:px-20 py-3">
           <div className="chapter-container px-8 md:px-10 xl:px-20 ">
+          {/* Conditional rendering based on verse availability */}
             {Object.keys(verse).length !== 0 ? (
               <>
                 <div className="custom-container flex justify-center">
@@ -86,9 +87,11 @@ const VersePage = () => {
                         </>
                       ) : (
                         <>
+                        {/* Display chapter introduction */}
                           <div className="chapter-intro flex justify-center flex-col items-center">
                             <div className="chapter-heading  flex justify-center flex-col items-center">
                               <h4 className="font-bold mb-5">
+                              {/* Display chapter and verse numbers */}
                                 {DefaultLanguage === "hindi" ? (
                                   <>
                                     भगवद्गीता:{" "}
@@ -102,7 +105,7 @@ const VersePage = () => {
                                 )}
                               </h4>
                             </div>
-
+                            {/* Display verse text */}
                             <div className="chapter-slok text-orange-600 text-center font-bold">
                               <p className="text-xl">
                                 {/* {verse.text.split("।")[0]} */}
@@ -119,7 +122,7 @@ const VersePage = () => {
                                   : ""}
                               </p>
                             </div>
-
+                           {/* Display verse transliteration */}
                             <div className="transliteration text-center">
                               <p>
                                 {verse.transliteration.split("\n")[0]}
@@ -129,7 +132,7 @@ const VersePage = () => {
                                 {verse.transliteration.split("\n")[2]}
                               </p>
                             </div>
-
+                            {/* Display word meanings */}
                             <div className="WordMeanings text-center">
                               <p>
                                 {wordMeaning.map((item) => (
@@ -146,14 +149,14 @@ const VersePage = () => {
                               </p>
                             </div>
                           </div>
-
+                         {/* Display translation and commentary */}
                           <div className="list-container z-10">
                             <div className="list-items flex flex-col justify-center items-center pb-14">
                               <div className="translation flex flex-col justify-center items-center w-full">
                                 <div className="heading mb-3 text-center w-full p-2">
                                   <h3 className=" mb-0">Translation</h3>
                                 </div>
-
+                               {/* Map and render translation content */}
                                 <div className="description w-full">
                                     {verse.translations.map((item) => {
                                       return (
@@ -210,7 +213,7 @@ const VersePage = () => {
                                  
                                 </div>
                               </div>
-
+                               {/* Display commentary */}
                               <div className="commentary flex flex-col justify-center items-center w-full">
                                 <div className="heading mb-3 text-center w-full p-2">
                                   <h3 className="mb-0">Commentary</h3>
@@ -266,7 +269,7 @@ const VersePage = () => {
                       )}
                     </div>
                   </div>
-
+                    {/* Render a verse table component */}
                   <VerseTable singleChapter={singleChapter} id={id} sh={sh} />
                 </div>
               </>

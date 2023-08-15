@@ -7,11 +7,14 @@ import VerseTable from "../Components/VerseTable";
 import Loading from "../Components/Loading";
 
 const ChapterPage = () => {
+  // Extract the "id" parameter from the URL
   const { id } = useParams();
+
+  // Initialize state variables
   const [showChapter, setShowChapter] = useState({});
   const [showChapterVerses, setShowChapterVerses] = useState([]);
 
-
+ // Extract data from the global context using the useGlobalContext hook
   const {
     GetSingleChapter,
     singleChapter,
@@ -24,6 +27,7 @@ const ChapterPage = () => {
 
   // console.log(DefaultLanguage)
 
+  // Function to determine the appropriate description based on language and author name
   const description = (arr) => {
     for (let i = 0; i < arr.length; i++) {
       if (DefaultLanguage === "english" && arr[i].author_name === "Swami Adidevananda") {
@@ -35,14 +39,18 @@ const ChapterPage = () => {
     }
   };
   // console.log(showChapterVerses)
+
+  // Update showChapter state when singleChapter changes
   useEffect(() => {
     setShowChapter(singleChapter);
   }, [singleChapter]);
 
+  // Update showChapterVerses state when chapterVerses changes
   useEffect(() => {
     setShowChapterVerses(chapterVerses);
   }, [chapterVerses]);
 
+  // Fetch single chapter details and verses when component mounts or id changes
   useEffect(() => {
     GetSingleChapter(`${id}`);
     GetAllVerses(`${id}/slok`);
@@ -64,6 +72,7 @@ const ChapterPage = () => {
               ) : (
                 <>
                   <div className="relative chapter-intro pt-20 pb-10 flex justify-center flex-col items-center">
+                  {/* Display chapter title based on language */}
                     <div className="chapter-heading mb-3 flex justify-center flex-col items-center">
                       <h3 className="font-bold mb-0">
                         {
@@ -77,7 +86,7 @@ const ChapterPage = () => {
                         }
                       </h3>
                     </div>
-
+                     {/* Display chapter summary based on language */}
                     <div className="chapter-summary">
                       <p>
                         {Object.keys(showChapter).length !== 0
@@ -90,19 +99,13 @@ const ChapterPage = () => {
                           }
                       </p>
                     </div>
-
-                    {/* <div className="shapes absolute w-full h-full">
-                      <div className="shape">
-                        <img src="/images/group.svg" alt="" />
-                      </div>
-                    </div> */}
-
                   </div>
-
+                  {/* Display list of verses */}
                   <div className="list-container z-10">
                     <div className="list-items pb-14">
                       {!isVersesLoading ? (
                         <>
+                         {/* Display total verse count */}
                           <div className="search-item py-5 mb-5 text-center">
                             <span className="font-bold text-xl">
                               {
@@ -110,6 +113,7 @@ const ChapterPage = () => {
                               }
                             </span>
                           </div>
+                          {/* Map and render each verse */}
                           {showChapterVerses.map((item, index) => {
                             return (
                                 <Shlok
@@ -134,7 +138,7 @@ const ChapterPage = () => {
               )}
             </div>
             </div>
-
+            {/* Render a verse table component */}
             <VerseTable
               singleChapter={singleChapter}
               id={id}

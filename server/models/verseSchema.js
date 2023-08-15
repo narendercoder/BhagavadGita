@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Define a Mongoose schema for the "RandomVerse" collection
 const verseSchema = new mongoose.Schema({
   id: {
     type: Number,

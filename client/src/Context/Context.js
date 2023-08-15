@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "./Reducer";
 import axios from "axios";
 
+// Create a new context
 const AppContext = React.createContext();
 
+// Define the API URL
 const API = `${process.env.REACT_APP_BACKEND_URL}/chapter`;
 
+// Define the initial state of the application
 const initialState = {
     DefaultLanguage: "english",
     isLoading: true,
@@ -25,13 +28,20 @@ const initialState = {
     isdarkMode: JSON.parse(localStorage.getItem("TOGGLE_DARKTHEME")) || false,
   }
 
+  // Define the AppProvider component
 const AppProvider = ({ children }) => {
+  // Use the useReducer hook to manage state using the reducer function
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Use the useState hook to manage the header state
   const [header, setHeader] = useState(false);
 
+
+ // Select default language
    const selectLanguage = (data) =>{
     return dispatch({type: "SET_SELECT_LANGUAGE", payload: data})
    }
+
 
   //get all particular chapter
   const fetchChapters = async () => {
@@ -95,6 +105,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
+    // Toggle the application theme (dark/light mode)
   const toggleTheme= () =>{
     return dispatch({type: "TOGGLE_THEME"})
 }

@@ -18,15 +18,13 @@ import Preloader from "./Components/Preloader";
 import Header from "./Components/Header";
 import { useEffect } from "react";
 
-
-
-
+// Define the main App component
 function App() {
-  const { isLoading } = useGlobalContext();
-  const { isdarkMode } = useGlobalContext();
-  const { header, setHeader} = useGlobalContext();
+  // Destructure values from the global context
+  const { isLoading, isdarkMode,header, setHeader } = useGlobalContext();
   const location = useLocation();
 
+   // Function to change the header background based on scroll position
   const changeHeaderBackground = () =>{
     if(window.scrollY >= 10){
       setHeader(true);
@@ -35,8 +33,10 @@ function App() {
       setHeader(false);
     }
   }
-    window.addEventListener('scroll', changeHeaderBackground);
+  // Add scroll event listener to change header background
+  window.addEventListener('scroll', changeHeaderBackground);
   
+  // Define light and dark themes using styled-components
   const lightTheme = {
     colors: {
       "textgray": "rgb(75, 85, 99)",
@@ -90,8 +90,7 @@ function App() {
     },
   };
 
-
-
+// Initialize AOS library once when component mounts
   useEffect(() => {
     AOS.init({
       once: true,

@@ -13,8 +13,6 @@ const {DefaultLanguage} = useGlobalContext();
   selectLanguage(data)
  };
 
- 
-
   return (
     <Wrapper className="flex justify-center items-center">
       <div className="menu">
