@@ -23,7 +23,7 @@ https://bhagavad-gita-gyan.vercel.app/
 <img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
 </div>
 
-**Client:** React, Redux, TailwindCSS, React-toastify, styled-components, aos
+**Client:** React, TailwindCSS, React-toastify, styled-components, aos
 
 **Server:** Node, Express, MongoDB
 
