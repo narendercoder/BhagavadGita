@@ -16,7 +16,7 @@ const VerseTable = ({ singleChapter }) => {
     });
   }
   return (
-    <Wrapper data-aos="fade-up" data-aos-delay="200">
+    <Wrapper  >
       <aside className="right-section">
         <div className="right-content">
           <div className="coverImg">

@@ -10,12 +10,12 @@ const About = () => {
       <div className="custom-container flex flex-col">
         <div className="wrapper mt-36 md:mt-20 grid grid-rows-1 xl:grid-cols-2 xl:gap-4">
 
-          <div className="img-content w-full h-full flex justify-center items-center" data-aos="fade-up">
+          <div className="img-content w-full h-full flex justify-center items-center" >
             <div className="content overflow-hidden ">
             </div>
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="100">
+          <div>
           <div className="title">
             <h3>
             <span className=" text-2xl text-orange-500">About</span> 

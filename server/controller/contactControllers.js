@@ -6,6 +6,7 @@ const {
 
 // Define an asynchronous function to handle the contact form submission
 const contact = async (req, res) => {
+  res.send("hello world");
   try {
      // Extract the name, email, and message from the request body
     const { name, email, message } = req.body;
@@ -18,7 +19,7 @@ const contact = async (req, res) => {
     };
 
     // Log the extracted data for debugging purposes
-    console.log(data);
+    // console.log(data);
 
    // Configure options for sending confirmation emails to the sender and website owner
     let options = {

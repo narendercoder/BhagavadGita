@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="footer-container px-10">
         <div className="wrapper grid sm:grid-cols-3 gap-2">
 
-          <div className="logo p-5" data-aos="fade-up" >
+          <div className="logo p-5" >
             <div className="mb-5">
               <a href="/">
                 <img src="/images/logo2.png" alt="logo" />
@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="footer-link lg:mx-10 md:mx-5 p-5 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+          <div className="footer-link lg:mx-10 md:mx-5 p-5 flex flex-col">
             <div className="mb-2">
               <h1 className="text-xl font-bold">USEFUL LINKS</h1>
             </div>
@@ -63,7 +63,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="footer-link p-5 flex flex-col " data-aos="fade-up" data-aos-delay="400">
+          <div className="footer-link p-5 flex flex-col" >
             <div className="mb-2">
               <h1 className="text-xl font-bold">FOLLOW ME</h1>
             </div>

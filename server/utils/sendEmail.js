@@ -23,7 +23,7 @@ const sendEmail = async (options) => {
     subject: options.subject,
     html: options.message_Content,
   };
-  transporter.sendMail(mailOptions, (error, result) => {
+  await transporter.sendMail(mailOptions, (error, result) => {
     if (error) {
       console.log(error);
     }

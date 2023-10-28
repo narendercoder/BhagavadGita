@@ -51,7 +51,7 @@ const ChapterPage = () => {
         <div className="chapter-container px-0 xl:px-20 py-3">
           <div className="wrapper px-8 md:px-10 xl:px-20">
           <div className="custom-container flex justify-center">
-            <div className="inner-container" data-aos="fade-up" data-aos-delay="200">
+            <div className="inner-container">
             <div className="main-section overflow-hidden flex flex-col">
               {isSingleLoading ? (
                 <>

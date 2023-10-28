@@ -1,5 +1,5 @@
-const express = require("express");
 require("dotenv").config();
+const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const axios = require("axios");
@@ -11,24 +11,24 @@ const verseSchema = require("./models/verseSchema");
 // Establish a connection to the MongoDB database
 connectDB();
 
+const corsOptions = {
+  origin: CLIENT_ACCESS_URL,
+};
+
 // Enable CORS for specified origins and methods
-app.use(
-  cors({
-    origin: CLIENT_ACCESS_URL,
-    methods: ["GET", "POST"],
-  })
-);
+app.use(cors(corsOptions));
+
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+
 
 // Parse incoming JSON data
 app.use(express.json());
-
-// Use the contactRoutes for handling contact form submissions
-app.use("/contact", contactRoutes);
-
-// Basic route for testing server
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 
 // Configure options for making API requests
 const options = {
@@ -39,7 +39,6 @@ const options = {
   },
 };
 
-// console.log(process.env.RAPID_API_KEY)
 
 // Route to get all chapters from the Bhagavad Gita API
 app.get("/chapters", async (req, res) => {
@@ -172,6 +171,16 @@ app.get("/chapter/:ch/slok/:sl", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }
+});
+
+
+// Use the contactRoutes for handling contact form submissions
+app.use("/contact", contactRoutes);
+
+
+// Basic route for testing server
+app.get("/", (req, res) => {
+  res.send("hello world");
 });
 
 

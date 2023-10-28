@@ -19,12 +19,8 @@ const ChapterBox = ({ id, heading, meaning, desc }) => {
   };
 
   return (
-    <Wrapper
-      className="chapter"
-      onClick={() => OpenChapter(id)}
-      data-aos="fade-up" data-aos-delay="200"
-    >
-      <div className="chapter-box" >
+    <Wrapper className="chapter" onClick={() => OpenChapter(id)} >
+      <div className="chapter-box"  >
         <div className="h-full flex flex-col p-10 justify-center">
           <div className="title flex flex-col mb-3">
             <div className="heading mr-4">

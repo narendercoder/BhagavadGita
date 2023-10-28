@@ -36,13 +36,13 @@ function App() {
     }
   }, [setHeader]);
 
-  useEffect(()=>{
-    AOS.init({
-      once: true,
-      duration: 1000,
-      offset: 100,
-    });
-  }, [])
+  // useEffect(()=>{
+  //   AOS.init({
+  //     once: true,
+  //     duration: 1000,
+  //     offset: 100,
+  //   });
+  // }, [])
  
  
 
