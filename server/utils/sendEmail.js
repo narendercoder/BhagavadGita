@@ -23,13 +23,11 @@ const sendEmail = async (options) => {
     subject: options.subject,
     html: options.message_Content,
   };
-  const mailInfo = await transporter.sendMail(mailOptions, (error, result) => {
+  transporter.sendMail(mailOptions, (error, result) => {
     if (error) {
-      // console.log(error);
+      console.log(error);
     }
   });
-
-  // console.log(mailInfo);
 };
 
 module.exports = sendEmail;
