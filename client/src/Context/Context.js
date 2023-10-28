@@ -126,7 +126,6 @@ const AppProvider = ({ children }) => {
 };
 
 //global custom hook
-
 const useGlobalContext = () =>{
     return useContext(AppContext);
 }
