@@ -13,6 +13,7 @@ connectDB();
 
 const corsOptions = {
   origin: CLIENT_ACCESS_URL,
+  methods: ['GET', 'PUT', 'POST']
 };
 
 // Enable CORS for specified origins and methods
