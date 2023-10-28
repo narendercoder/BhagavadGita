@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { CgChevronDoubleUp } from "react-icons/cg";
 
@@ -11,7 +11,7 @@ const ScrollToTopButton = () => {
       behavior: "smooth",
     });
   }
-  const listenToScroll = () => {
+  const listenToScroll = useCallback(() => {
     let heightToHidden = 250;
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
@@ -21,11 +21,12 @@ const ScrollToTopButton = () => {
     } else {
       setVisible(false);
     }
-  };
+  }, [setVisible])
+  
   useEffect(() => {
     window.addEventListener("scroll", listenToScroll);
     return () => window.removeEventListener("scroll", listenToScroll);
-  }, []);
+  }, [listenToScroll]);
 
   return (
     <>

@@ -37,6 +37,8 @@ const Navbar = ({ header, location }) => {
                     : "/images/logo2.png"
                 }
                 alt="logo"
+                width={100} 
+                height={100}
               />
             </NavLink>
             <CgClose

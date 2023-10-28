@@ -119,19 +119,6 @@ const AppProvider = ({ children }) => {
     fetchRandomSlok();
   }, [])
 
-  // useEffect(()=>{
-  //   GetSingleChapter();
-  // }, [])
-
-  // useEffect(()=>{
-  //   GetAllVerses();
-  // }, [])
-
-  // useEffect(()=>{
-  //   GetVerse();
-  // }, [])
-
-
 
   return <AppContext.Provider value={{...state,header, setHeader,selectLanguage, fetchChapters, fetchRandomSlok, GetSingleChapter, GetAllVerses, GetVerse, toggleTheme}} >
   {children}

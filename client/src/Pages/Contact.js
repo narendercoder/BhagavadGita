@@ -55,20 +55,22 @@ const Contact = () => {
         `${process.env.REACT_APP_BACKEND_URL}/contact`,
         data
       );
+
+      console.log(res);
   
       // Show success notification
-      if (res.data.success === true) {
-        toast.success("Thank You! Your Message has been sent sucessfully!", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: isdarkMode ? "dark" : "light",
-        });
-      }
+      // if (res.data.success === true) {
+      //   toast.success("Thank You! Your Message has been sent sucessfully!", {
+      //     position: "top-right",
+      //     autoClose: 1000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: isdarkMode ? "dark" : "light",
+      //   });
+      // }
   
        // Clear form fields
       setFormData({

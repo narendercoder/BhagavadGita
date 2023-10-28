@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import HeroSection from '../Components/HeroSection'
-import Chapters from '../Components/Chapters'
 import About from './About'
 import Contact from './Contact'
 import styled from 'styled-components'
 import { ToastContainer } from 'react-toastify'
 import Border from '../Components/Border'
+const Chapters = React.lazy(()=> import("../Components/Chapters"))
 
 const HomePage = () => {
   
@@ -26,7 +26,9 @@ const HomePage = () => {
       />
       <HeroSection/>
       <Border/>
+      <Suspense fallback={<div>Loading...</div>}>
       <Chapters/>
+      </Suspense>
       <Border/>
       <About/>
       {/* border */}

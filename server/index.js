@@ -22,6 +22,14 @@ app.use(
 // Parse incoming JSON data
 app.use(express.json());
 
+// Use the contactRoutes for handling contact form submissions
+app.use("/contact", contactRoutes);
+
+// Basic route for testing server
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 // Configure options for making API requests
 const options = {
   method: "GET",
@@ -166,13 +174,7 @@ app.get("/chapter/:ch/slok/:sl", async (req, res) => {
   }
 });
 
-// Use the contactRoutes for handling contact form submissions
-app.use("/contact", contactRoutes);
 
-// Basic route for testing server
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 
 // Start the Express server and listen on port 4000
 app.listen(4000, () => {

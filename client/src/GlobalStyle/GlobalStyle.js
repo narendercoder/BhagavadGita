@@ -88,6 +88,12 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) => theme.colors.gradient.primary};
   }
 
+  @media (min-width: 700px) and (max-width: 930px) {
+     html{
+      font-size: 70%;
+     }
+  }
+
   @media screen and (max-width: 700px) {
      html{
       font-size: 60%;

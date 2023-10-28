@@ -25,19 +25,7 @@ const ChapterPage = () => {
     DefaultLanguage
   } = useGlobalContext();
 
-  // console.log(DefaultLanguage)
-
-  // Function to determine the appropriate description based on language and author name
-  const description = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (DefaultLanguage === "english" && arr[i].author_name === "Swami Adidevananda") {
-        return arr[i].description;
-      }
-      else if(DefaultLanguage === "hindi" && arr[i].author_name === "Swami Tejomayananda"){
-        return arr[i].description;
-      }
-    }
-  };
+  
   // console.log(showChapterVerses)
 
   // Update showChapter state when singleChapter changes
@@ -59,7 +47,7 @@ const ChapterPage = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper id="chapter">
         <div className="chapter-container px-0 xl:px-20 py-3">
           <div className="wrapper px-8 md:px-10 xl:px-20">
           <div className="custom-container flex justify-center">
@@ -101,7 +89,7 @@ const ChapterPage = () => {
                     </div>
                   </div>
                   {/* Display list of verses */}
-                  <div className="list-container z-10">
+                  <div className="list-container z-10" id="list">
                     <div className="list-items pb-14">
                       {!isVersesLoading ? (
                         <>
@@ -117,11 +105,8 @@ const ChapterPage = () => {
                           {showChapterVerses.map((item, index) => {
                             return (
                                 <Shlok
-                                  id={item.id}
                                   key={item.id}
-                                  verseNumber={item.verse_number}
-                                  chapter={item.chapter_number}
-                                  description={description(item.translations)}
+                                  chapterVerse = {item}
                                   DefaultLanguage={DefaultLanguage}
                                 />
                             );
@@ -209,7 +194,7 @@ const Wrapper = styled.div`
     position: relative;
     padding: 30px 1em 1em 1em;
     overflow-y: scroll;
-    height: 1000px;
+    height: 100vh;
     z-index: 1;
   }
  
@@ -277,7 +262,7 @@ const Wrapper = styled.div`
   @media (min-width: 750px) {
     .inner-container {
       max-width: 74%;
-      min-width: 100vh;
+      min-width: 70%;
       min-height: 100vh;
     }
   }

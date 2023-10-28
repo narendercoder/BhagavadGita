@@ -99,6 +99,9 @@ const Wrapper = styled.div`
       background-color: ${({ theme }) => theme.colors.bg.primary};
       cursor: pointer;
       color: ${({ theme }) => theme.colors.heading.primary};
+      span{
+        font-size: 1rem;
+      }
       &:hover {
         span {
           color: white;
@@ -114,16 +117,20 @@ const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 960px) {
-    .verse-count {
-      width: 10%;
-      margin-right: 1%;
-      margin-bottom: 1.2987%;
+  .verseTable  .verse-count {
+      min-width: 12%;
+      margin-right: 2%;
+      margin-bottom: 2%;
+
+      span{
+        font-size: 0.8rem;
+      }
     }
   }
 
   @media screen and (min-width: 960px) {
     .verse-count {
-      width: 15.58442%;
+      min-width: 15.58442%;
       margin-right: 1%;
       margin-bottom: 1.2987%;
     }

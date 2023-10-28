@@ -1,7 +1,6 @@
+import AOS from "aos";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import About from "./Pages/About";
 import { GlobalStyle } from "./GlobalStyle/GlobalStyle";
 import { ThemeProvider } from "styled-components";
@@ -16,89 +15,46 @@ import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Footer from "./Components/Footer";
 import Preloader from "./Components/Preloader";
 import Header from "./Components/Header";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { darkTheme, lightTheme } from "./config/Theme";
+import "aos/dist/aos.css";
 
 // Define the main App component
 function App() {
   // Destructure values from the global context
-  const { isLoading, isdarkMode,header, setHeader } = useGlobalContext();
+  const { isLoading, isdarkMode, header, setHeader } = useGlobalContext();
   const location = useLocation();
 
-   // Function to change the header background based on scroll position
-  const changeHeaderBackground = () =>{
-    if(window.scrollY >= 10){
+
+
+  // Function to change the header background based on scroll position
+  const changeHeaderBackground = useCallback(() => {
+    if (window.scrollY >= 10) {
       setHeader(true);
-    }
-    else{
+    } else {
       setHeader(false);
     }
-  }
-  // Add scroll event listener to change header background
-  window.addEventListener('scroll', changeHeaderBackground);
-  
-  // Define light and dark themes using styled-components
-  const lightTheme = {
-    colors: {
-      "textgray": "rgb(75, 85, 99)",
-      "orange": "orange",
-      heading: {
-        primary: "rgb(0, 0, 0)",
-      },
-      bg: {
-        primary: "rgb(255, 255, 255)",
-      },
-      highlight: {
-        primary: "rgb(255, 152, 0)",
-        "secondary": "#1a0dab"
-      },
-      "border":{
-        "primary": "radial-gradient(at center , rgb(221, 221, 221) 0%, rgba(255, 255, 255, 0) 70%)"
-      },
-      "border_color":{
-        "primary": "#f6e0ce"
-      },
-      "gradient":{
-        "primary": "linear-gradient(to right bottom, rgb(242, 242, 242) 0%, rgb(242, 242, 242) 100%);"
-      }
-    },
-  };
+  }, [setHeader]);
 
-  const darkTheme = {
-    colors: {
-      "textgray": "rgb(209 213 219)",
-      "orange": "orange",
-      heading: {
-        primary: "rgb(255, 255, 255)",
-        "secondary": "rgb(160, 160, 160)",
-      },
-      bg: {
-        primary: "rgb(49, 49, 58)",
-      },
-      highlight: {
-        "primary": "rgb(255, 152, 0)",
-        "secondary": "orange"
-      },
-      "border": {
-        "primary": "radial-gradient(at center top, rgba(197, 202, 213, 0.15) 0%, rgba(255, 255, 255, 0) 70%);"
-      },
-      "border_color":{
-        "primary": "gray"
-      },
-      gradient:{
-        "primary": "linear-gradient(to right bottom, rgba(23, 23, 27) 0%, rgba(40, 40, 47) 100%);"
-      }
-    },
-  };
-
-// Initialize AOS library once when component mounts
-  useEffect(() => {
+  useEffect(()=>{
     AOS.init({
       once: true,
       duration: 1000,
       offset: 100,
     });
-    // eslint-disable-next-line
-  }, []);
+  }, [])
+ 
+ 
+
+  useEffect(() => {
+    // Add scroll event listener to change header background
+    window.addEventListener("scroll", changeHeaderBackground);
+    return () => {
+      window.removeEventListener("scroll", changeHeaderBackground);
+    };
+  }, [changeHeaderBackground]);
+
+  
 
   return (
     <ThemeProvider theme={isdarkMode ? darkTheme : lightTheme}>
@@ -109,7 +65,7 @@ function App() {
           <Preloader />
         ) : (
           <>
-           <Header header={header} location={location} />
+            <Header header={header} location={location} />
             <Music />
             <ScrollToTopButton />
             <Routes>

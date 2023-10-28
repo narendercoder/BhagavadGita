@@ -1,5 +1,8 @@
 // Import the sendEmail utility function from the specified path
 const sendEmail = require("../utils/sendEmail");
+const {
+  SMPT_MAIL,
+} = require("../config/keys");
 
 // Define an asynchronous function to handle the contact form submission
 const contact = async (req, res) => {
@@ -34,7 +37,7 @@ const contact = async (req, res) => {
     // Configure options for sending notification email to the website owner
     options = {
       name: data.name,
-      email: "infopartner256@gmail.com",
+      email: SMPT_MAIL,
       subject: "New Query from Bhagavad Gita Website",
       message_Content: `<p> Hi Narender Singh Bisht, <br> You have received a new query from your Bhagavad Gita Website. The Sender Details are: <br> <b>Name : </b>${data.name} <br> <b>Email : </b> ${data.email} <br> <b>Message : </b> ${data.message} </p>`,
     };

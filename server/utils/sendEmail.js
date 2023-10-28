@@ -6,6 +6,7 @@ const {
   SMPT_MAIL,
   SMPT_PASSWORD,
 } = require("../config/keys");
+
 const sendEmail = async (options) => {
   const transporter = nodeMailer.createTransport({
     host: SMPT_HOST,
