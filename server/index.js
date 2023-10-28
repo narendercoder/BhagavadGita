@@ -39,7 +39,6 @@ const options = {
   },
 };
 
-
 // Route to get all chapters from the Bhagavad Gita API
 app.get("/chapters", async (req, res) => {
   try {
@@ -182,8 +181,6 @@ app.use("/contact", contactRoutes);
 app.get("/", (req, res) => {
   res.send("hello world");
 });
-
-
 
 // Start the Express server and listen on port 4000
 app.listen(4000, () => {
