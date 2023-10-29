@@ -218,7 +218,7 @@ const Wrapper = styled.section`
         min-width: 375px;
         .group-val {
           width: 100%;
-          padding: 15px;
+          padding: 15px 20px;
           input {
             width: 100%;
             padding: 1em 1.8em;

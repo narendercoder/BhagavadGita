@@ -24,7 +24,7 @@ const Navbar = ({ header, location }) => {
               : "navbar-container w-full grid gap-3"
           }
         >
-          <div className="logo">
+          <div className="logo px-3">
             <NavLink to="/">
               <img
                 src={
@@ -37,14 +37,14 @@ const Navbar = ({ header, location }) => {
                     : "/images/logo2.png"
                 }
                 alt="logo"
-                width={100} 
+                width={100}
                 height={100}
               />
             </NavLink>
             <CgClose
               name="close-outline"
               className="mobile-nav-icon close-outline"
-              onClick={() => setMenuIcon(false)  }
+              onClick={() => setMenuIcon(false)}
             />
           </div>
 
@@ -91,11 +91,11 @@ const Navbar = ({ header, location }) => {
 
           <div className="mode-toggler flex justify-end items-center mr-3">
             <Toggler />
-            <LanguageBtn/>
+            <LanguageBtn />
           </div>
         </div>
 
-        <div className="mobile-navbar">
+        <div className="mobile-navbar flex justify-center items-center">
           <div className="mobile-navbar-btn">
             <CgMenu
               name="menu-outline"
@@ -107,6 +107,7 @@ const Navbar = ({ header, location }) => {
           <div className="mobile-logo flex justify-center">
             <NavLink to="/">
               <img
+                className=" h-12"
                 src={
                   location.pathname === "/"
                     ? !isdarkMode && header
@@ -123,7 +124,7 @@ const Navbar = ({ header, location }) => {
 
           <div className="mobile-mode-toggler flex justify-end">
             <Toggler />
-            <LanguageBtn/>
+            <LanguageBtn />
           </div>
         </div>
       </div>
@@ -136,7 +137,7 @@ export default Navbar;
 const Wrapper = styled.nav`
   width: 100%;
   height: 80px;
-  padding: 20px;
+  padding: 20px 10px;
 
   .menu_mobile_overlay {
     display: none;
@@ -213,6 +214,7 @@ const Wrapper = styled.nav`
   li:hover > .navbar-link::after {
     width: 100%;
   }
+
   li:hover > .navbar-link {
     color: ${({ theme }) => theme.colors.orange};
   }
@@ -320,9 +322,11 @@ const Wrapper = styled.nav`
             border-bottom: 2px solid rgba(95, 44, 112, 0.5);
 
             .navbar-link {
+              display: block;
               font-size: 1.5rem;
               color: white;
               transition: all 0.4s ease;
+              width: max-content;
               &:after {
                 content: "";
                 display: block;
@@ -339,13 +343,17 @@ const Wrapper = styled.nav`
               }
             }
           }
+          li:hover > .navbar-link::after {
+            width: 100%;
+          }
+          li:hover > .navbar-link {
+            color: ${({ theme }) => theme.colors.orange};
+          }
         }
       }
       .mode-toggler {
         display: none;
       }
     }
-
-    
   }
 `;

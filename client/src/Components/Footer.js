@@ -94,11 +94,13 @@ const Footer = () => {
           <div className="mb-10 w-full">
             <div className="footer-bottom-line"></div>
           </div>
-          <span>
-            @ 2021 All rights reserved | Designed With 💙 By{" "}
+          <span className="flex justify-center items-center flex-wrap">
+            <span className="mb-1">@ 2021 All rights reserved |</span> <span className="mb-1">
+            Designed With 💙 By{" "}
             <a href="https://www.linkedin.com/in/narender-singh-bisht-4529051b7/" className=" text-sm font-bold ">
               Narender Singh Bisht
             </a>
+            </span>
           </span>
         </div>
       </div>

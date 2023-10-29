@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
   
   a {
     font-size: 0.8rem;
+    ${'' /* outline: none; */}
   }
   
   p {
