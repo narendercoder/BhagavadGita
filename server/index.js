@@ -11,13 +11,9 @@ const verseSchema = require("./models/verseSchema");
 // Establish a connection to the MongoDB database
 connectDB();
 
-const corsOptions = {
-  origin: CLIENT_ACCESS_URL,
-  methods: ['GET', 'PUT', 'POST']
-};
 
 // Enable CORS for specified origins and methods
-app.use(cors(corsOptions));
+app.use(cors());
 
 // app.use(function(req, res, next) {
 //   res.setHeader('Access-Control-Allow-Origin', '*');
