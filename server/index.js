@@ -11,17 +11,21 @@ const verseSchema = require("./models/verseSchema");
 // Establish a connection to the MongoDB database
 connectDB();
 
+// const corsOptions = {
+//   origin: CLIENT_ACCESS_URL,
+//   methods: ["*"]
+// };
 
 // Enable CORS for specified origins and methods
-app.use(cors());
+// app.use(cors());
 
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 
 // Parse incoming JSON data
